@@ -44,49 +44,19 @@ const values = [
 
 const team = [
   {
-    name: "Arjun Mehta",
+    name: "Aswin Ram",
     role: "Founder & CEO",
     bio: "15+ years in luxury real estate across India",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&fit=crop",
   },
   {
-    name: "Priya Sharma",
+    name: "Gopi Maries",
     role: "Head of Sales",
     bio: "Specialist in premium residential properties",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&fit=crop",
   },
   {
-    name: "Rohit Kapoor",
+    name: "Piramu Chendu",
     role: "Chief Architect",
     bio: "Award-winning architect with 200+ projects",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&fit=crop",
-  },
-  {
-    name: "Neha Reddy",
-    role: "Legal Advisor",
-    bio: "Expert in property law and RERA compliance",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&fit=crop",
-  },
-];
-
-const testimonials = [
-  {
-    text: "EstateHub made buying our first home completely stress-free. Their team guided us through every step, from shortlisting to registration.",
-    name: "Vikram & Ananya",
-    role: "Homeowners, Hyderabad",
-    avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=100&fit=crop",
-  },
-  {
-    text: "The market insights and negotiation support we received were exceptional. We got our dream villa at a price we never thought possible.",
-    name: "Deepak Joshi",
-    role: "Villa Owner, Bangalore",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&fit=crop",
-  },
-  {
-    text: "Professional, transparent, and genuinely caring. EstateHub's team went above and beyond to find the perfect investment property for us.",
-    name: "Meera Patel",
-    role: "Investor, Mumbai",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&fit=crop",
   },
 ];
 
@@ -226,7 +196,7 @@ export default function AboutSection() {
 
           {team.map((member, i) => (
             <div className="team-card" key={i}>
-              <img src={member.image} alt={member.name} />
+              <div className="team-avatar">{member.name.charAt(0)}</div>
               <h3>{member.name}</h3>
               <p>{member.role}</p>
               <span>{member.bio}</span>
@@ -237,31 +207,7 @@ export default function AboutSection() {
 
       </section>
 
-      {/* Testimonials */}
 
-      <section className="about-testimonials">
-
-        <h2>What Our Clients Say</h2>
-
-        <div className="testimonials-grid">
-
-          {testimonials.map((item, i) => (
-            <div className="testimonial-card" key={i}>
-              <div className="quote-icon">"</div>
-              <p>{item.text}</p>
-              <div className="testimonial-author">
-                <img src={item.avatar} alt={item.name} />
-                <div className="testimonial-author-info">
-                  <h4>{item.name}</h4>
-                  <span>{item.role}</span>
-                </div>
-              </div>
-            </div>
-          ))}
-
-        </div>
-
-      </section>
 
       {/* CTA */}
 

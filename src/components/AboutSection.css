@@ -173,25 +173,34 @@
 }
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 .team-card {
   text-align: center;
-  transition: transform 0.3s;
+  background: var(--cream);
+  border-radius: 16px;
+  padding: 40px 28px 32px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 .team-card:hover {
   transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .12);
 }
-.team-card img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, .1);
-  margin-bottom: 18px;
+.team-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font: 700 2rem "Cormorant Garamond", serif;
+  color: #fff;
 }
 .team-card h3 {
   font: 600 1.35rem "Cormorant Garamond", serif;
@@ -211,70 +220,6 @@
   line-height: 1.5;
 }
 
-/* TESTIMONIALS */
-.about-testimonials {
-  padding: 100px 60px;
-  background: var(--cream);
-  text-align: center;
-}
-.about-testimonials h2 {
-  font: 600 3rem "Cormorant Garamond", serif;
-  color: var(--charcoal);
-  margin-bottom: 50px;
-}
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.testimonial-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 36px 28px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
-  text-align: left;
-  position: relative;
-  transition: transform 0.3s;
-}
-.testimonial-card:hover {
-  transform: translateY(-6px);
-}
-.testimonial-card .quote-icon {
-  font-size: 48px;
-  color: var(--gold);
-  line-height: 1;
-  margin-bottom: 12px;
-  font-family: "Cormorant Garamond", serif;
-}
-.testimonial-card p {
-  color: #555;
-  line-height: 1.7;
-  font-size: 0.95rem;
-  margin-bottom: 20px;
-  font-style: italic;
-}
-.testimonial-author {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.testimonial-author img {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-.testimonial-author-info h4 {
-  font-size: 0.95rem;
-  color: var(--charcoal);
-  margin-bottom: 2px;
-}
-.testimonial-author-info span {
-  font-size: 0.8rem;
-  color: #999;
-}
 
 /* ABOUT CTA */
 .about-cta {
@@ -344,8 +289,7 @@
     padding: 40px 20px;
   }
 
-  .values-grid,
-  .testimonials-grid {
+  .values-grid {
     grid-template-columns: 1fr;
   }
 
@@ -354,8 +298,7 @@
   }
 
   .about-values,
-  .about-team,
-  .about-testimonials {
+  .about-team {
     padding: 60px 20px;
   }
 }
