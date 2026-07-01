@@ -1,4 +1,3 @@
-
 /* =============================================
    ABOUT SECTION — uses same tokens & fonts
    as HeroSection.css
@@ -17,28 +16,33 @@
     linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)),
     url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80") center/cover;
 }
+
 .about-hero .overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(to right, rgba(0, 0, 0, .5), rgba(0, 0, 0, .2));
 }
+
 .about-hero-content {
   position: relative;
   z-index: 2;
   color: #fff;
   max-width: 800px;
 }
+
 .about-hero-content .tag {
   color: var(--gold-light);
   letter-spacing: 4px;
   margin-bottom: 20px;
   font-size: 14px;
 }
+
 .about-hero-content h1 {
   font: 700 4.5rem "Cormorant Garamond", serif;
   line-height: 1.08;
   margin-bottom: 20px;
 }
+
 .about-hero-content p {
   line-height: 1.8;
   font-size: 1.1rem;
@@ -53,10 +57,12 @@
   gap: 60px;
   align-items: center;
 }
+
 .about-story-img {
   flex: 1;
   min-width: 0;
 }
+
 .about-story-img img {
   width: 100%;
   height: 480px;
@@ -64,21 +70,25 @@
   border-radius: 18px;
   box-shadow: 0 12px 36px rgba(0, 0, 0, .12);
 }
+
 .about-story-text {
   flex: 1;
   min-width: 0;
 }
+
 .about-story-text .tag {
   color: var(--gold);
   letter-spacing: 4px;
   font-size: 13px;
   margin-bottom: 14px;
 }
+
 .about-story-text h2 {
   font: 600 3rem "Cormorant Garamond", serif;
   color: var(--charcoal);
   margin-bottom: 20px;
 }
+
 .about-story-text p {
   color: #555;
   line-height: 1.85;
@@ -94,14 +104,17 @@
   padding: 60px;
   gap: 24px;
 }
+
 .stat-item {
   text-align: center;
 }
+
 .stat-item h3 {
   font: 700 3.2rem "Cormorant Garamond", serif;
   color: var(--gold);
   margin-bottom: 8px;
 }
+
 .stat-item p {
   color: #ccc;
   font-weight: 400;
@@ -109,55 +122,147 @@
   font-size: 0.9rem;
 }
 
-/* VALUES */
-.about-values {
-  padding: 100px 60px;
-  background: var(--cream);
-  text-align: center;
+/* VALUES V2 — Two-Column Approach Layout */
+.about-values-v2 {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  min-height: 620px;
 }
-.about-values h2 {
-  font: 600 3rem "Cormorant Garamond", serif;
-  color: var(--charcoal);
+
+/* Left column — dark panel */
+.values-left {
+  background: var(--charcoal);
+  padding: 80px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.values-tag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--gold-light);
+  letter-spacing: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.tag-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--gold);
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.values-heading {
+  font: 700 3.6rem "Cormorant Garamond", serif;
+  color: #fff;
+  line-height: 1.08;
+  margin-bottom: 24px;
+}
+
+.values-desc {
+  color: rgba(255, 255, 255, .7);
+  line-height: 1.85;
+  font-size: 1rem;
+  max-width: 520px;
   margin-bottom: 50px;
 }
-.values-grid {
+
+/* 2×2 numbered values grid */
+.values-numbered-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  max-width: 1100px;
-  margin: 0 auto;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 48px;
 }
-.value-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 40px 28px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
-  transition: transform 0.3s, box-shadow 0.3s;
+
+.values-numbered-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
-.value-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, .12);
+
+.values-num {
+  color: var(--gold);
+  font: 500 0.85rem "Inter", sans-serif;
+  letter-spacing: 1px;
 }
-.value-icon {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+
+.values-num-line {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, .15);
+}
+
+.values-num-title {
+  font: 600 1.2rem "Cormorant Garamond", serif;
+  color: #fff;
+  margin-top: 4px;
+}
+
+/* Right column — Mission & Vision cards */
+.values-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.mv-card {
+  flex: 1;
+  padding: 50px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mv-card--mission {
+  background: #2a2725;
+  color: #fff;
+}
+
+.mv-card--vision {
+  background: linear-gradient(160deg, var(--gold), var(--gold-light));
+  color: var(--charcoal);
+}
+
+.mv-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 22px;
-  font-size: 28px;
+  margin-bottom: 20px;
 }
-.value-card h3 {
-  font: 600 1.4rem "Cormorant Garamond", serif;
-  color: var(--charcoal);
-  margin-bottom: 12px;
+
+.mv-card--mission .mv-card-icon {
+  background: rgba(14, 14, 14, 0.08);
+  border: 1px solid rgba(255, 255, 255, .12);
 }
-.value-card p {
-  color: #666;
-  line-height: 1.7;
+
+.mv-card--vision .mv-card-icon {
+  background: rgba(30, 28, 26, .12);
+  border: 1px solid rgba(30, 28, 26, .1);
+}
+
+.mv-card h3 {
+  font: 600 2.2rem "Cormorant Garamond", serif;
+  margin-bottom: 14px;
+}
+
+.mv-card p {
+  line-height: 1.8;
   font-size: 0.95rem;
+  opacity: 0.85;
+  max-width: 380px;
+}
+
+.mv-card--vision p {
+  opacity: 0.9;
+  color: var(--charcoal);
 }
 
 /* TEAM */
@@ -166,11 +271,13 @@
   background: #fff;
   text-align: center;
 }
+
 .about-team h2 {
   font: 600 3rem "Cormorant Garamond", serif;
   color: var(--charcoal);
   margin-bottom: 50px;
 }
+
 .team-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -178,6 +285,7 @@
   max-width: 1100px;
   margin: 0 auto;
 }
+
 .team-card {
   text-align: center;
   background: var(--cream);
@@ -186,10 +294,12 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
   transition: transform 0.3s, box-shadow 0.3s;
 }
+
 .team-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 16px 40px rgba(0, 0, 0, .12);
 }
+
 .team-avatar {
   width: 80px;
   height: 80px;
@@ -202,17 +312,20 @@
   font: 700 2rem "Cormorant Garamond", serif;
   color: #fff;
 }
+
 .team-card h3 {
   font: 600 1.35rem "Cormorant Garamond", serif;
   color: var(--charcoal);
   margin-bottom: 4px;
 }
+
 .team-card p {
   color: var(--gold);
   font-weight: 500;
   font-size: 0.9rem;
   margin-bottom: 6px;
 }
+
 .team-card span {
   display: block;
   color: #888;
@@ -228,10 +341,12 @@
   text-align: center;
   padding: 80px 20px;
 }
+
 .about-cta h2 {
   font: 600 3rem "Cormorant Garamond", serif;
   margin-bottom: 16px;
 }
+
 .about-cta p {
   margin-bottom: 28px;
   opacity: 0.85;
@@ -241,12 +356,14 @@
   margin-right: auto;
   margin-bottom: 28px;
 }
+
 .about-cta-buttons {
   display: flex;
   gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
 }
+
 .about-cta-buttons button {
   border: none;
   border-radius: 10px;
@@ -256,41 +373,61 @@
   font-size: 1rem;
   transition: transform 0.3s, background 0.3s;
 }
+
 .about-cta-buttons button:hover {
   transform: translateY(-3px);
 }
+
 .about-cta-buttons .cta-primary {
   background: var(--gold);
   color: #111;
 }
+
 .about-cta-buttons .cta-secondary {
   background: rgba(255, 255, 255, .12);
   color: #fff;
   border: 1px solid rgba(255, 255, 255, .3);
 }
+
 .about-cta-buttons .cta-secondary:hover {
   background: rgba(255, 255, 255, .2);
 }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
-  .about-hero-content h1 { font-size: 3rem; }
-  .about-hero { padding: 120px 25px 50px; }
+  .about-hero-content h1 {
+    font-size: 3rem;
+  }
+
+  .about-hero {
+    padding: 120px 25px 50px;
+  }
 
   .about-story {
     flex-direction: column;
     padding: 60px 20px;
     gap: 30px;
   }
-  .about-story-img img { height: 300px; }
+
+  .about-story-img img {
+    height: 300px;
+  }
 
   .about-stats {
     grid-template-columns: repeat(2, 1fr);
     padding: 40px 20px;
   }
 
-  .values-grid {
+  .about-values-v2 {
     grid-template-columns: 1fr;
+  }
+
+  .values-left {
+    padding: 60px 20px;
+  }
+
+  .mv-card {
+    padding: 40px 20px;
   }
 
   .team-grid {
@@ -307,6 +444,7 @@
   .about-stats {
     grid-template-columns: 1fr;
   }
+
   .team-grid {
     grid-template-columns: 1fr;
   }
