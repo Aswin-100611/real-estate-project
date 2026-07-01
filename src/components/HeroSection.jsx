@@ -30,6 +30,11 @@ const properties = [
     price: "₹3.2 Cr",
     image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800"
   }
+const navLinks = [
+  { label: "Buy" },
+  { label: "Rent" },
+  { label: "Sell" },
+  { label: "Loans" },
 ];
 
 export default function HeroSection() {
