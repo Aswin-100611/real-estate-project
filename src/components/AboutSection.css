@@ -393,6 +393,18 @@
   background: rgba(255, 255, 255, .2);
 }
 
+.footer {
+  background: var(--charcoal);
+  color: rgba(255, 255, 255, 0.6);
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.footer p:hover {
+  color: var(--gold);
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
   .about-hero-content h1 {
@@ -433,6 +445,8 @@
   .team-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+
 
   .about-values,
   .about-team {
