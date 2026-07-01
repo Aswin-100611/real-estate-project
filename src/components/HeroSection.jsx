@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./HeroSection.css";
 
 const properties = [
@@ -52,7 +53,7 @@ export default function HeroSection() {
         <ul className="nav-links">
           <li>Home</li>
           <li>Browser</li>
-          <li>About</li>
+          <li><Link to="/about">About</Link></li>
           <li>Contact</li>
         </ul>
 
