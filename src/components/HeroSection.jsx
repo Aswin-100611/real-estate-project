@@ -5,7 +5,7 @@ const navLinks = [
   { label: "Buy" },
   { label: "Rent" },
   { label: "Sell" },
-  { label: "Home Loans" },
+  { label: "Loans" },
 ];
 
 export default function HeroSection() {
