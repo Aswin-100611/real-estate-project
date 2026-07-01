@@ -9,37 +9,11 @@ const stats = [
   { value: "98%", label: "Client Satisfaction" },
 ];
 
-const values = [
-  {
-    icon: "🏛️",
-    title: "Trust & Transparency",
-    desc: "Every transaction is backed by verified documentation and complete legal compliance. We believe trust is built on openness.",
-  },
-  {
-    icon: "🎯",
-    title: "Client-Centric Approach",
-    desc: "Your dream home is our mission. Our dedicated advisors work around your schedule, preferences, and budget.",
-  },
-  {
-    icon: "📈",
-    title: "Market Expertise",
-    desc: "With deep analytics and neighbourhood-level insights, we help you make investment decisions with confidence.",
-  },
-  {
-    icon: "🏗️",
-    title: "Premium Partnerships",
-    desc: "We partner exclusively with RERA-registered developers and verified builders to guarantee quality construction.",
-  },
-  {
-    icon: "🤝",
-    title: "End-to-End Support",
-    desc: "From property search to home-loan assistance and registration, we're with you at every step of the journey.",
-  },
-  {
-    icon: "🌿",
-    title: "Sustainable Living",
-    desc: "We champion eco-friendly developments with green certifications, rainwater harvesting, and energy-efficient designs.",
-  },
+const coreValues = [
+  { num: "01", title: "Your Trust, Our Priority" },
+  { num: "02", title: "Transforming Spaces Safely" },
+  { num: "03", title: "Data-Backed Decisions" },
+  { num: "04", title: "Deep Market Research" },
 ];
 
 const team = [
@@ -116,7 +90,7 @@ export default function AboutSection() {
 
         <div className="about-story-img">
           <img
-            src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80"
+            src="/about_story_flats.png"
             alt="EstateHub office"
           />
         </div>
@@ -166,21 +140,74 @@ export default function AboutSection() {
 
       </section>
 
-      {/* Core Values */}
+      {/* Core Values — Redesigned Layout */}
 
-      <section className="about-values">
+      <section className="about-values-v2">
 
-        <h2>Our Core Values</h2>
+        {/* Left Column */}
+        <div className="values-left">
 
-        <div className="values-grid">
+          <p className="values-tag">
+            <span className="tag-dot"></span>
+            OUR APPROACH
+          </p>
 
-          {values.map((item, i) => (
-            <div className="value-card" key={i}>
-              <div className="value-icon">{item.icon}</div>
-              <h3>{item.title}</h3>
-              <p>{item.desc}</p>
+          <h2 className="values-heading">
+            A Stronger Future,<br />
+            Built on Trust.
+          </h2>
+
+          <p className="values-desc">
+            We provide reliable, market-backed guidance using the finest
+            industry expertise, data analytics, and client-first principles
+            to empower confident real estate decisions.
+          </p>
+
+          <div className="values-numbered-grid">
+            {coreValues.map((item, i) => (
+              <div className="values-numbered-item" key={i}>
+                <span className="values-num">{item.num}</span>
+                <div className="values-num-line"></div>
+                <h3 className="values-num-title">{item.title}</h3>
+              </div>
+            ))}
+          </div>
+
+        </div>
+
+        {/* Right Column — Mission & Vision Cards */}
+        <div className="values-right">
+
+          <div className="mv-card mv-card--mission">
+            <div className="mv-card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
             </div>
-          ))}
+            <h3>Our Mission</h3>
+            <p>
+              To pioneer transparent, client-first real estate services that
+              safely harness deep market insights, verified partnerships, and
+              cutting-edge technology to build stronger communities and
+              healthier investments globally.
+            </p>
+          </div>
+
+          <div className="mv-card mv-card--vision">
+            <div className="mv-card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+              </svg>
+            </div>
+            <h3>Our Vision</h3>
+            <p>
+              A world where modern real estate practices work harmoniously
+              with community values, sustainable development, and technology
+              to make property ownership accessible and rewarding for everyone.
+            </p>
+          </div>
 
         </div>
 
