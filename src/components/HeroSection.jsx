@@ -1,60 +1,198 @@
-import React, { useState } from "react";
+import React from "react";
 import "./HeroSection.css";
 
-const navLinks = [
-  { label: "Buy" },
-  { label: "Rent" },
-  { label: "Sell" },
-  { label: "Home Loans" },
+const properties = [
+  {
+    id: 1,
+    title: "Luxury Apartment",
+    location: "Hyderabad",
+    price: "₹1.45 Cr",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800"
+  },
+  {
+    id: 2,
+    title: "Modern Villa",
+    location: "Bangalore",
+    price: "₹2.10 Cr",
+    image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800"
+  },
+  {
+    id: 3,
+    title: "Premium Flat",
+    location: "Chennai",
+    price: "₹92 Lakhs",
+    image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800"
+  },
+  {
+    id: 4,
+    title: "Skyline Heights",
+    location: "Mumbai",
+    price: "₹3.2 Cr",
+    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800"
+  }
 ];
 
 export default function HeroSection() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
   return (
     <div className="page">
-      <nav className="navbar">
-        {/* Logo */}
-        <a href="/" className="logo">
-          Estate<span>Hub</span>
-        </a>
 
-        {/* Nav links */}
-        <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
-          {navLinks.map((link) => (
-            <li key={link.label} className="nav-item">
-              {link.label}
-              <svg className="caret" viewBox="0 0 16 16" fill="none">
-                <polyline points="4 6 8 10 12 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </li>
-          ))}
+      {/* Navbar */}
+
+      <nav className="navbar">
+
+        <div className="logo">
+          Estate<span>Hub</span>
+        </div>
+
+        <ul className="nav-links">
+          <li>Home</li>
+          <li>Browser</li>
+          <li>About</li>
+          <li>Contact</li>
         </ul>
 
-        {/* Actions */}
-        <div className="nav-actions">
-          <button className="btn-ghost">Login</button>
-          <button className="btn-ghost icon-btn" aria-label="Shortlist">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-            </svg>
-            Shortlist
-          </button>
-          <button className="btn-primary">
-            Post Property
-            <span className="free-tag">FREE</span>
+        <button className="btn">
+          My Account
+        </button>
+
+      </nav>
+
+      {/* Hero */}
+
+      <section className="hero">
+
+        <div className="overlay"></div>
+
+        <div className="content">
+
+          <p className="tag">
+            PREMIUM REAL ESTATE
+          </p>
+
+          <h1>
+            Find Your Dream Home
+          </h1>
+
+          <p>
+            Discover premium apartments in prime locations with trusted
+            real estate experts.
+          </p>
+
+          <div className="search">
+
+            <select>
+              <option>Select Location</option>
+              <option>Hyderabad</option>
+              <option>Chennai</option>
+              <option>Bangalore</option>
+              <option>Mumbai</option>
+              <option>Pune</option>
+            </select>
+
+            <select>
+              <option>Property Type</option>
+              <option>Apartment</option>
+              <option>Flat</option>
+              <option>Villa</option>
+              <option>Penthouse</option>
+            </select>
+
+            <select>
+              <option>Select Budget</option>
+              <option>₹20L - ₹50L</option>
+              <option>₹50L - ₹1Cr</option>
+              <option>₹1Cr - ₹2Cr</option>
+              <option>Above ₹2Cr</option>
+            </select>
+
+            <button>
+              Search
+            </button>
+
+          </div>
+
+          <button className="explore">
+            Explore Properties
           </button>
 
-          {/* Hamburger */}
-          <button
-            className={`hamburger ${menuOpen ? "active" : ""}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
-          >
-            <span /><span /><span />
-          </button>
         </div>
-      </nav>
+
+      </section>
+
+      {/* Featured */}
+
+      <section className="featured">
+
+        <h2>Featured Properties</h2>
+
+        <div className="scroll-buttons">
+          <button>{"<"}</button>
+          <button>{">"}</button>
+        </div>
+
+        <div className="cards">
+
+          {properties.map((item) => (
+
+            <div className="card" key={item.id}>
+
+              <img
+                src={item.image}
+                alt={item.title}
+              />
+
+              <div className="card-body">
+
+                <h3>{item.title}</h3>
+
+                <p>📍 {item.location}</p>
+
+                <h4>{item.price}</h4>
+
+                <span>2 BHK • 1200 sqft</span>
+
+                <button>
+                  View Details
+                </button>
+
+              </div>
+
+            </div>
+
+          ))}
+
+        </div>
+
+      </section>
+
+      {/* CTA */}
+
+      <section className="cta">
+
+        <h2>
+          Ready to Find Your Dream Home?
+        </h2>
+
+        <p>
+          Contact our experts today and schedule a property visit.
+        </p>
+
+        <button>
+          Contact Us
+        </button>
+
+      </section>
+
+      {/* Footer */}
+
+      <footer className="footer">
+
+        <div>
+          © 2026 EstateHub. All Rights Reserved.
+        </div>
+
+      </footer>
+
     </div>
   );
 }
