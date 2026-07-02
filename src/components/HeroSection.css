@@ -53,6 +53,142 @@ select{
         rgba(0,0,0,0)
     );
 }
+/* ===========================
+   NAVBAR ACTIONS
+=========================== */
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.wishlist-btn,
+.profile-btn{
+    width:46px;
+    height:46px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(12px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:.35s;
+    border:1px solid rgba(255,255,255,.15);
+}
+
+.wishlist-btn:hover,
+.profile-btn:hover{
+    background:var(--gold);
+    transform:translateY(-2px);
+}
+
+.wishlist-btn:hover svg,
+.profile-btn:hover svg{
+    color:#fff !important;
+}
+
+.profile-wrapper{
+    position:relative;
+}
+
+.profile-dropdown{
+
+    position:absolute;
+    top:60px;
+    right:0;
+
+    width:240px;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.18);
+
+    z-index:999;
+
+}
+
+.profile-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    margin-bottom:14px;
+
+}
+
+.profile-header h4{
+
+    color:#1e1c1a;
+
+    margin-bottom:4px;
+
+}
+
+.profile-header span{
+
+    color:#777;
+
+    font-size:.85rem;
+
+}
+
+.profile-dropdown hr{
+
+    border:none;
+
+    height:1px;
+
+    background:#ececec;
+
+    margin:14px 0;
+
+}
+
+.profile-dropdown button{
+
+    width:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    background:none;
+
+    border:none;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    color:#1e1c1a;
+
+    transition:.3s;
+
+    font-size:15px;
+
+}
+
+.profile-dropdown button:hover{
+
+    background:#f7f4ef;
+
+    color:var(--gold);
+
+}
 .logo{
     font-family:"Cormorant Garamond",serif;
     font-size:2.3rem;
@@ -1012,4 +1148,359 @@ min-width:290px;
 .footer h3{
 font-size:1.8rem;
 }
+}
+/* ==========================
+   LOGIN MODAL
+========================== */
+.modal-overlay{
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:25px;
+
+    overflow-y:auto;
+
+    z-index:9999;
+
+    backdrop-filter:blur(5px);
+}
+
+.login-modal{
+
+width:420px;
+
+background:#fff;
+
+border-radius:22px;
+
+padding:35px;
+
+position:relative;
+
+box-shadow:0 20px 50px rgba(0,0,0,.25);
+
+animation:popup .35s ease;
+
+}
+
+.close-btn{
+
+position:absolute;
+
+top:18px;
+
+right:18px;
+
+background:none;
+
+border:none;
+
+cursor:pointer;
+
+}
+
+.login-modal h2{
+
+font-family:"Cormorant Garamond",serif;
+
+font-size:2.4rem;
+
+color:var(--charcoal);
+
+margin-bottom:10px;
+
+text-align:center;
+
+}
+
+.login-modal p{
+
+text-align:center;
+
+color:#777;
+
+margin-bottom:30px;
+
+}
+
+.input-group{
+
+display:flex;
+
+flex-direction:column;
+
+margin-bottom:20px;
+
+}
+
+.input-group label{
+
+margin-bottom:8px;
+
+font-weight:600;
+
+color:var(--charcoal);
+
+}
+
+.input-group input{
+
+height:54px;
+
+padding:0 16px;
+
+border:1px solid #ddd;
+
+border-radius:12px;
+
+outline:none;
+
+font-size:15px;
+
+transition:.3s;
+
+}
+
+.input-group input:focus{
+
+border-color:var(--gold);
+
+box-shadow:0 0 0 3px rgba(184,154,94,.15);
+
+}
+
+.login-btn{
+
+width:100%;
+
+height:56px;
+
+border:none;
+
+border-radius:14px;
+
+background:var(--gold);
+
+color:#fff;
+
+font-size:16px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.35s;
+
+}
+
+.login-btn:hover{
+
+background:var(--gold-light);
+
+transform:translateY(-2px);
+
+}
+
+@keyframes popup{
+
+from{
+
+opacity:0;
+
+transform:scale(.9);
+
+}
+
+to{
+
+opacity:1;
+
+transform:scale(1);
+
+}
+
+}
+.settings-modal{
+    width:550px;
+    max-width:90%;
+    max-height:85vh;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    background:#fff;
+    border-radius:22px;
+
+    padding:35px;
+
+    box-sizing:border-box;
+
+    scrollbar-gutter:stable;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.settings-modal h2{
+
+text-align:center;
+
+font-family:"Cormorant Garamond",serif;
+
+font-size:2.5rem;
+
+margin-bottom:30px;
+
+color:var(--charcoal);
+
+}
+.settings-section{
+    margin-bottom:35px;
+    padding-bottom:20px;
+    border-bottom:1px solid #efefef;
+}
+.settings-section h3{
+
+font-size:1.1rem;
+
+margin-bottom:15px;
+
+color:var(--gold);
+
+}
+
+.settings-section p{
+
+color:#666;
+
+line-height:1.8;
+
+margin-bottom:8px;
+
+}
+
+.settings-section select{
+
+width:100%;
+
+height:52px;
+
+border:1px solid #ddd;
+
+border-radius:12px;
+
+padding:0 15px;
+
+font-size:15px;
+
+outline:none;
+
+}
+
+.settings-section select:focus{
+
+border-color:var(--gold);
+
+}
+
+.settings-buttons{
+
+display:flex;
+
+gap:18px;
+
+margin-top:30px;
+
+}
+.settings-modal::-webkit-scrollbar{
+    width:8px;
+}
+
+.settings-modal::-webkit-scrollbar-track{
+    background:transparent;
+    margin:18px 0;
+}
+
+.settings-modal::-webkit-scrollbar-thumb{
+    background:#b89a5e;
+    border-radius:20px;
+    border:2px solid #fff;
+}
+
+.settings-modal::-webkit-scrollbar-thumb:hover{
+    background:#a98b50;
+}
+.settings-section{
+    padding:0 0 25px;
+    margin-bottom:30px;
+    border-bottom:1px solid #efefef;
+}
+
+.settings-section:last-child{
+    border-bottom:none;
+    margin-bottom:0;
+}
+.save-btn{
+
+flex:1;
+
+height:54px;
+
+border:none;
+
+border-radius:12px;
+
+background:var(--gold);
+
+color:#fff;
+
+font-size:15px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.save-btn:hover{
+
+background:var(--gold-light);
+
+}
+
+.logout-btn{
+
+flex:1;
+
+height:54px;
+
+border:none;
+
+border-radius:12px;
+
+background:#222;
+
+color:#fff;
+
+font-size:15px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.logout-btn:hover{
+
+background:#000;
+
 }

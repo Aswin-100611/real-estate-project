@@ -18,6 +18,12 @@ import {
   ArrowRight2,
   Call,
   Sms,
+  Heart,
+  ProfileCircle,
+  Setting2,
+  Login,
+  Logout,
+CloseCircle
 } from "iconsax-react";
 
 const properties = [
@@ -132,7 +138,23 @@ export default function HeroSection() {
   const [location, setLocation] = useState("Bangalore");
   const [propertyType, setPropertyType] = useState("Villa");
   const [budget, setBudget] = useState("₹20L - ₹50L");
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
 
+const [showLogin, setShowLogin] = useState(false);
+
+const [showSettings, setShowSettings] = useState(false);
+
+const [username, setUsername] = useState(
+localStorage.getItem("username") || ""
+);
+
+const [mobile, setMobile] = useState(
+localStorage.getItem("mobile") || ""
+);
+
+const [isLoggedIn, setIsLoggedIn] = useState(
+localStorage.getItem("isLoggedIn") === "true"
+);
   const scrollLeft = () => {
     sliderRef.current.scrollBy({
       left: -350,
@@ -170,7 +192,56 @@ export default function HeroSection() {
   }
 
 };
+const handleLogin = () => {
 
+if(username.trim()==="" || mobile.trim()===""){
+
+alert("Please enter Username and Mobile Number");
+
+return;
+
+}
+
+localStorage.setItem("username",username);
+
+localStorage.setItem("mobile",mobile);
+
+
+
+localStorage.setItem("isLoggedIn","true");
+
+setIsLoggedIn(true);
+
+setShowLogin(false);
+
+};
+
+const handleLogout=()=>{
+
+localStorage.clear();
+
+setIsLoggedIn(false);
+
+setUsername("");
+
+setMobile("");
+
+
+
+setShowProfileMenu(false);
+
+};
+
+const saveSettings=()=>{
+
+localStorage.setItem("username",username);
+
+localStorage.setItem("mobile",mobile);
+
+
+setShowSettings(false);
+
+};
   return (
 
 <div className="page">
@@ -200,12 +271,120 @@ Estate<span>Hub</span>
 </li>
 
 </ul>
+<div className="nav-actions">
 
-<button className="btn">
-My Account
+    <button className="wishlist-btn">
+
+        <Heart
+            size="24"
+            color="#ffffff"
+            variant="Bold"
+        />
+
+    </button>
+
+    <div className="profile-wrapper">
+
+        <button
+            className="profile-btn"
+            onClick={() => setShowProfileMenu(!showProfileMenu)}
+        >
+
+            <ProfileCircle
+                size="28"
+                color="#ffffff"
+                variant="Bold"
+            />
+
+        </button>
+
+        {showProfileMenu && (
+
+            <div className="profile-dropdown">
+
+                <div className="profile-header">
+
+                    <ProfileCircle
+                        size="40"
+                        color="#b89a5e"
+                        variant="Bold"
+                    />
+
+                    <div>
+
+                       <h4>
+
+  {isLoggedIn ? username : "Guest"}
+
+</h4>
+
+                        <span>
+
+  {isLoggedIn ? mobile : "Please Login"}
+
+</span>
+
+                    </div>
+
+                </div>
+
+                <hr />
+<button
+onClick={()=>{
+setShowProfileMenu(false);
+setShowSettings(true);
+}}
+>
+
+<Setting2
+size="18"
+color="#b89a5e"
+variant="Bold"
+/>
+
+Settings
+
+</button>
+                {isLoggedIn ? (
+
+                    <button onClick={handleLogout}>
+
+<Logout
+size="18"
+color="#b89a5e"
+variant="Bold"
+/>
+
+Logout
+
 </button>
 
-</nav>
+                ) : (
+<button
+onClick={()=>{
+setShowProfileMenu(false);
+setShowLogin(true);
+}}
+>
+
+<Login
+size="18"
+color="#b89a5e"
+variant="Bold"
+/>
+
+Login
+
+</button>
+                )}
+
+            </div>
+
+        )}
+
+    </div>
+
+</div></nav>
 
 <section className="hero">
 
@@ -1000,6 +1179,267 @@ Search
   </div>
 
 </footer>
+{/* ================= LOGIN MODAL ================= */}
+
+{showLogin && (
+
+<div className="modal-overlay">
+
+  <div className="login-modal">
+
+    <button
+      className="close-btn"
+      onClick={()=>setShowLogin(false)}
+    >
+
+      <CloseCircle
+        size="28"
+        color="#b89a5e"
+        variant="Bold"
+      />
+
+    </button>
+
+    <h2>
+
+      Welcome to EstateHub
+
+    </h2>
+
+    <p>
+
+      Login to manage your profile and enquiries.
+
+    </p>
+
+    <div className="input-group">
+
+      <label>
+
+        Username
+
+      </label>
+
+      <input
+
+        type="text"
+
+        value={username}
+
+        onChange={(e)=>setUsername(e.target.value)}
+
+        placeholder="Enter Username"
+
+      />
+
+    </div>
+
+    <div className="input-group">
+
+      <label>
+
+        Mobile Number
+
+      </label>
+
+      <input
+
+        type="tel"
+
+        value={mobile}
+
+        onChange={(e)=>setMobile(e.target.value)}
+
+        placeholder="Enter Mobile Number"
+
+      />
+
+    </div>
+
+    <button
+
+      className="login-btn"
+
+      onClick={handleLogin}
+
+    >
+
+      Login
+
+    </button>
+
+  </div>
+
+</div>
+
+)}
+{/* ================= SETTINGS MODAL ================= */}
+
+{showSettings && (
+
+<div className="modal-overlay">
+
+  <div className="settings-modal">
+
+    <button
+      className="close-btn"
+      onClick={()=>setShowSettings(false)}
+    >
+
+      <CloseCircle
+        size="28"
+        color="#b89a5e"
+        variant="Bold"
+      />
+
+    </button>
+
+    <h2>
+
+      Settings
+
+    </h2>
+
+    <div className="settings-section">
+
+      <h3>
+        Profile Information
+      </h3>
+
+      <div className="input-group">
+
+        <label>
+          Username
+        </label>
+
+        <input
+          type="text"
+          value={username}
+          onChange={(e)=>setUsername(e.target.value)}
+        />
+
+      </div>
+
+      <div className="input-group">
+
+        <label>
+          Mobile Number
+        </label>
+
+        <input
+          type="tel"
+          value={mobile}
+          onChange={(e)=>setMobile(e.target.value)}
+        />
+
+      </div>
+
+    </div>
+
+   <div className="settings-section">
+
+  <h3>
+    Account Status
+  </h3>
+
+  <p>
+
+    <strong>Status :</strong> {isLoggedIn ? "Logged In" : "Guest"}
+
+  </p>
+
+  <p>
+
+    <strong>Member Since :</strong> 2026
+
+  </p>
+
+</div>
+
+    <div className="settings-section">
+
+  <h3>
+    Help & Support
+  </h3>
+
+  <p>
+
+    <Sms
+      size="18"
+      color="#b89a5e"
+      variant="Bold"
+    />
+
+    support@estatehub.com
+
+  </p>
+
+  <p>
+
+    <Call
+      size="18"
+      color="#b89a5e"
+      variant="Bold"
+    />
+
+    +91 1234567809
+
+  </p>
+
+</div>
+<div className="settings-section">
+
+  <h3>
+    About EstateHub
+  </h3>
+
+  <p>
+
+    Version 1.0
+
+  </p>
+
+  <p>
+
+    Privacy Policy
+
+  </p>
+
+  <p>
+
+    Terms & Conditions
+
+  </p>
+
+</div>
+
+    <div className="settings-buttons">
+
+      <button
+        className="save-btn"
+        onClick={saveSettings}
+      >
+
+        Save Changes
+
+      </button>
+
+      <button
+        className="logout-btn"
+        onClick={handleLogout}
+      >
+
+        Logout
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+)}
 
 </div>
 
