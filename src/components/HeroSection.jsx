@@ -117,7 +117,7 @@ Estate<span>Hub</span>
 <li>Home</li>
 <li><Link to="/property">Browser</Link></li>
 <li><Link to="/about">About</Link></li>
-<li>Contact</li>
+<li><Link to="/contact">Contact</Link></li>
 </ul>
 
 <button className="btn">
@@ -571,11 +571,13 @@ Search
 
     </p>
 
+    <Link to="/contact">
     <button>
 
       Contact Us
 
     </button>
+    </Link>
 
   </div>
 
