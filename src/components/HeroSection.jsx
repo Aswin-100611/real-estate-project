@@ -115,7 +115,7 @@ Estate<span>Hub</span>
 
 <ul className="nav-links">
 <li>Home</li>
-<li>Browser</li>
+<li><Link to="/property">Browser</Link></li>
 <li><Link to="/about">About</Link></li>
 <li>Contact</li>
 </ul>
