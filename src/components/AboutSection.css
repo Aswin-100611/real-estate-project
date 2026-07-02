@@ -436,8 +436,9 @@
   background: #444;
 }
 
-.copyright {
-  text-align: center;
+.footer p.copyright {
+  text-align: right;
+  justify-content: center;
   color: #aaa;
 }
 
@@ -519,9 +520,11 @@
     grid-template-columns: 1fr;
     text-align: center;
   }
+
   .footer-contact-item {
     justify-content: center;
   }
+
   .footer {
     padding: 70px 20px;
   }
