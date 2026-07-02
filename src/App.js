@@ -14,6 +14,7 @@ function App() {
         <Route path="/about" element={<AboutSection />} />
         <Route path="/property/:id" element={<PropertyDetails/>} />
          <Route path="/property" element={<PropertyListing />} />
+         <Route path="/browser" element={<PropertyListing />} />
         <Route path="/contact" element={<ContactSection />} />
       </Routes>
     </BrowserRouter>
