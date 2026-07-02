@@ -294,6 +294,14 @@
     background: #181614;
     color: #ddd;
     padding: 70px;
+    text-align: left;
+}
+
+.footer-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: flex-start;
 }
 
 .contact-page .footer-container {
@@ -381,6 +389,10 @@
     .contact-page .footer-container {
         grid-template-columns: 1fr;
         text-align: center;
+    }
+
+    .footer-contact-item {
+        justify-content: center;
     }
 
     .contact-page .footer {
