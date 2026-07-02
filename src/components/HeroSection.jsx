@@ -1,6 +1,7 @@
-import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./HeroSection.css";
+
 import {
   Location,
   Buildings,
@@ -24,6 +25,8 @@ const properties = [
     id: 1,
     title: "Luxury Apartment",
     location: "Hyderabad",
+    type: "Apartment",
+    budget: "₹1Cr - ₹2Cr",
     price: "₹1.45 Cr",
     image:
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800",
@@ -32,6 +35,8 @@ const properties = [
     id: 2,
     title: "Modern Villa",
     location: "Bangalore",
+    type: "Villa",
+    budget: "Above ₹2Cr",
     price: "₹2.10 Cr",
     image:
       "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800",
@@ -40,6 +45,8 @@ const properties = [
     id: 3,
     title: "Premium Flat",
     location: "Chennai",
+    type: "Flat",
+    budget: "₹50L - ₹1Cr",
     price: "₹92 Lakhs",
     image:
       "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800",
@@ -48,6 +55,8 @@ const properties = [
     id: 4,
     title: "Skyline Heights",
     location: "Mumbai",
+    type: "Apartment",
+    budget: "Above ₹2Cr",
     price: "₹3.2 Cr",
     image:
       "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800",
@@ -56,6 +65,8 @@ const properties = [
     id: 5,
     title: "Lake View Residency",
     location: "Pune",
+    type: "Apartment",
+    budget: "₹1Cr - ₹2Cr",
     price: "₹1.12 Cr",
     image:
       "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800",
@@ -64,6 +75,8 @@ const properties = [
     id: 6,
     title: "Elite Garden Homes",
     location: "Coimbatore",
+    type: "Villa",
+    budget: "₹50L - ₹1Cr",
     price: "₹86 Lakhs",
     image:
       "https://images.unsplash.com/photo-1494526585095-c41746248156?w=800",
@@ -72,6 +85,8 @@ const properties = [
     id: 7,
     title: "Royal Heights",
     location: "Hyderabad",
+    type: "Apartment",
+    budget: "₹1Cr - ₹2Cr",
     price: "₹1.85 Cr",
     image:
       "https://images.unsplash.com/photo-1460317442991-0ec209397118?w=800",
@@ -80,6 +95,8 @@ const properties = [
     id: 8,
     title: "Palm Residency",
     location: "Chennai",
+    type: "Flat",
+    budget: "₹50L - ₹1Cr",
     price: "₹98 Lakhs",
     image:
       "https://images.unsplash.com/photo-1448630360428-65456885c650?w=800",
@@ -88,6 +105,8 @@ const properties = [
     id: 9,
     title: "Urban Elite",
     location: "Bangalore",
+    type: "Apartment",
+    budget: "₹1Cr - ₹2Cr",
     price: "₹1.68 Cr",
     image:
       "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800",
@@ -96,6 +115,8 @@ const properties = [
     id: 10,
     title: "Green Valley Homes",
     location: "Pune",
+    type: "Villa",
+    budget: "₹1Cr - ₹2Cr",
     price: "₹1.25 Cr",
     image:
       "https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?w=800",
@@ -104,23 +125,53 @@ const properties = [
 
 export default function HeroSection() {
 
-const sliderRef = useRef();
+  const navigate = useNavigate();
 
-const scrollLeft = () => {
-sliderRef.current.scrollBy({
-left:-350,
-behavior:"smooth"
-});
+  const sliderRef = useRef();
+
+  const [location, setLocation] = useState("Bangalore");
+  const [propertyType, setPropertyType] = useState("Villa");
+  const [budget, setBudget] = useState("₹20L - ₹50L");
+
+  const scrollLeft = () => {
+    sliderRef.current.scrollBy({
+      left: -350,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollRight = () => {
+    sliderRef.current.scrollBy({
+      left: 350,
+      behavior: "smooth",
+    });
+  };
+
+  const handleSearch = () => {
+
+  const matchedProperty = properties.find((property) => {
+
+    return (
+      property.location === location &&
+      property.type === propertyType &&
+      property.budget === budget
+    );
+
+  });
+
+  if (matchedProperty) {
+
+    navigate(`/property/${matchedProperty.id}`);
+
+  } else {
+
+    alert("No property found matching your search.");
+
+  }
+
 };
 
-const scrollRight = () => {
-sliderRef.current.scrollBy({
-left:350,
-behavior:"smooth"
-});
-};
-
-return (
+  return (
 
 <div className="page">
 
@@ -131,10 +182,23 @@ Estate<span>Hub</span>
 </div>
 
 <ul className="nav-links">
-<li>Home</li>
-<li><Link to="/property">Browser</Link></li>
-<li><Link to="/about">About</Link></li>
-<li><Link to="/contact">Contact</Link></li>
+
+<li>
+<Link to="/">Home</Link>
+</li>
+
+<li>
+<Link to="/browser">Browser</Link>
+</li>
+
+<li>
+<Link to="/about">About</Link>
+</li>
+
+<li>
+<Link to="/contact">Contact</Link>
+</li>
+
 </ul>
 
 <button className="btn">
@@ -172,11 +236,21 @@ verified listings and transparent pricing.
 <div className="search-item">
 
 <label>
-  <Location size="18" color="#d4b87a" variant="Bold" />
-  <span>Location</span>
+
+<Location
+size="18"
+color="#d4b87a"
+variant="Bold"
+/>
+
+<span>Location</span>
+
 </label>
 
-<select>
+<select
+value={location}
+onChange={(e)=>setLocation(e.target.value)}
+>
 
 <option>Hyderabad</option>
 <option>Bangalore</option>
@@ -192,11 +266,21 @@ verified listings and transparent pricing.
 <div className="search-item">
 
 <label>
-  <Buildings size="18" color="#d4b87a" variant="Bold" />
-  <span>Property Type</span>
+
+<Buildings
+size="18"
+color="#d4b87a"
+variant="Bold"
+/>
+
+<span>Property Type</span>
+
 </label>
 
-<select>
+<select
+value={propertyType}
+onChange={(e)=>setPropertyType(e.target.value)}
+>
 
 <option>Apartment</option>
 <option>Villa</option>
@@ -210,11 +294,21 @@ verified listings and transparent pricing.
 <div className="search-item">
 
 <label>
-  <WalletMoney size="18" color="#d4b87a" variant="Bold" />
-  <span>Budget</span>
+
+<WalletMoney
+size="18"
+color="#d4b87a"
+variant="Bold"
+/>
+
+<span>Budget</span>
+
 </label>
 
-<select>
+<select
+value={budget}
+onChange={(e)=>setBudget(e.target.value)}
+>
 
 <option>₹20L - ₹50L</option>
 <option>₹50L - ₹1Cr</option>
@@ -225,9 +319,11 @@ verified listings and transparent pricing.
 
 </div>
 
-<button className="search-btn">
+<button
+className="search-btn"
+onClick={handleSearch}
+>
 
-<>
 <SearchNormal
 size="18"
 variant="Bold"
@@ -235,7 +331,6 @@ color="#000"
 />
 
 Search
-</>
 
 </button>
 
@@ -245,17 +340,18 @@ Search
 
 </section>
 <section className="featured">
-<div className="section-header">
+
+  <div className="section-header">
 
     <p className="section-tag">
-        PREMIUM COLLECTION
+      PREMIUM COLLECTION
     </p>
 
     <h2>
-        Featured Properties
+      Featured Properties
     </h2>
 
-</div>
+  </div>
 
   <div className="carousel-wrapper">
 
@@ -286,29 +382,27 @@ Search
             />
 
             <span className="verified">
-              <>
-<Verify
-size="16"
-variant="Bold"
-color="#16a34a"
-/>
 
-Verified
-</>
+              <Verify
+                size="16"
+                variant="Bold"
+                color="#16a34a"
+              />
 
-              
+              Verified
+
             </span>
 
             <span className="rating">
-              <>
-<Star1
-size="16"
-variant="Bold"
-color="#fff"
-/>
 
-4.8
-</>
+              <Star1
+                size="16"
+                variant="Bold"
+                color="#ffffff"
+              />
+
+              4.8
+
             </span>
 
           </div>
@@ -317,21 +411,17 @@ color="#fff"
 
             <h3>{item.title}</h3>
 
-            <p className="location">
+            <div className="location">
 
-             <p className="location">
+              <Location
+                size="16"
+                variant="Bold"
+                color="#b89a5e"
+              />
 
-<Location
-size="16"
-variant="Bold"
-color="#b89a5e"
-/>
+              <span>{item.location}</span>
 
-{item.location}
-
-</p>
-
-            </p>
+            </div>
 
             <h4>{item.price}</h4>
 
@@ -340,19 +430,24 @@ color="#b89a5e"
               2 BHK • 1200 sqft
 
             </span>
-<Link to={`/property/${item.id}`}>
-            <button className="view-btn">
 
-  <span>View Property</span>
+            <Link to={`/property/${item.id}`}>
 
-  <ArrowRight2
-    size="18"
-    color="#ffffff"
-    variant="Bold"
-  />
+              <button className="view-btn">
 
-</button>
-</Link>
+                <span>
+                  View Property
+                </span>
+
+                <ArrowRight2
+                  size="18"
+                  color="#ffffff"
+                  variant="Bold"
+                />
+
+              </button>
+
+            </Link>
 
           </div>
 
@@ -372,47 +467,58 @@ color="#b89a5e"
   </div>
 
   <div className="featured-btn">
- <Link to="/property">
-    <button className="explore">
 
-      Explore Properties
+    <Link to="/browser">
 
-    </button>
-</Link>
+      <button className="explore">
+
+        Explore Properties
+
+      </button>
+
+    </Link>
+
   </div>
 
 </section>
 
+{/* ================= WHY CHOOSE US ================= */}
+
 <section className="why-us">
 
   <div className="why-header">
-    <p className="section-tag">WHY ESTATEHUB</p>
-    <h2>Why Choose EstateHub</h2>
-</div>
+
+    <p className="section-tag">
+      WHY ESTATEHUB
+    </p>
+
+    <h2>
+      Why Choose EstateHub
+    </h2>
+
+  </div>
 
   <div className="why-grid">
 
     <div className="why-card">
 
       <div className="why-icon">
+
         <SecuritySafe
-size="34"
-variant="Bold"
-color="#b89a5e"
-/>
+          size="34"
+          variant="Bold"
+          color="#b89a5e"
+        />
+
       </div>
 
       <h3>
-
         Verified Properties
-
       </h3>
 
       <p>
-
-        Every property is carefully verified
-        before being listed on EstateHub.
-
+        Every property is carefully verified before
+        being listed on EstateHub.
       </p>
 
     </div>
@@ -420,24 +526,22 @@ color="#b89a5e"
     <div className="why-card">
 
       <div className="why-icon">
+
         <People
-size="34"
-variant="Bold"
-color="#b89a5e"
-/>
+          size="34"
+          variant="Bold"
+          color="#b89a5e"
+        />
+
       </div>
 
       <h3>
-
         Trusted Agents
-
       </h3>
 
       <p>
-
         Work with experienced professionals
         from enquiry to purchase.
-
       </p>
 
     </div>
@@ -445,24 +549,22 @@ color="#b89a5e"
     <div className="why-card">
 
       <div className="why-icon">
+
         <MoneyRecive
-size="34"
-variant="Bold"
-color="#b89a5e"
-/>
+          size="34"
+          variant="Bold"
+          color="#b89a5e"
+        />
+
       </div>
 
       <h3>
-
         Best Pricing
-
       </h3>
 
       <p>
-
-        Transparent pricing with
-        zero hidden charges.
-
+        Transparent pricing with zero
+        hidden charges.
       </p>
 
     </div>
@@ -470,24 +572,22 @@ color="#b89a5e"
     <div className="why-card">
 
       <div className="why-icon">
+
         <DocumentText
-size="34"
-variant="Bold"
-color="#b89a5e"
-/>
+          size="34"
+          variant="Bold"
+          color="#b89a5e"
+        />
+
       </div>
 
       <h3>
-
         Easy Documentation
-
       </h3>
 
       <p>
-
-        Simple documentation and
-        complete legal assistance.
-
+        Simple documentation and complete
+        legal assistance.
       </p>
 
     </div>
@@ -495,23 +595,34 @@ color="#b89a5e"
   </div>
 
 </section>
+{/* ================= HOW IT WORKS ================= */}
+
 <section className="how">
 
   <div className="why-header">
-    <p className="section-tag">SIMPLE PROCESS</p>
-    <h2>How It Works</h2>
-</div>
+
+    <p className="section-tag">
+      SIMPLE PROCESS
+    </p>
+
+    <h2>
+      How It Works
+    </h2>
+
+  </div>
 
   <div className="timeline">
 
     <div className="step">
 
       <div className="step-circle">
+
         <SearchNormal
           size="36"
           color="#ffffff"
           variant="Bold"
         />
+
       </div>
 
       <h3>Search</h3>
@@ -528,11 +639,13 @@ color="#b89a5e"
     <div className="step">
 
       <div className="step-circle">
+
         <Calendar
           size="36"
           color="#ffffff"
           variant="Bold"
         />
+
       </div>
 
       <h3>Book Visit</h3>
@@ -549,11 +662,13 @@ color="#b89a5e"
     <div className="step">
 
       <div className="step-circle">
+
         <People
           size="36"
           color="#ffffff"
           variant="Bold"
         />
+
       </div>
 
       <h3>Meet Agent</h3>
@@ -570,11 +685,13 @@ color="#b89a5e"
     <div className="step">
 
       <div className="step-circle">
+
         <Home
           size="36"
           color="#ffffff"
           variant="Bold"
         />
+
       </div>
 
       <h3>Own Your Home</h3>
@@ -590,181 +707,284 @@ color="#b89a5e"
 
 </section>
 
+{/* ================= SERVICE LOCATIONS ================= */}
+
 <section className="locations">
 
   <div className="why-header">
-    <p className="section-tag">OUR PRESENCE</p>
-    <h2>Service Locations</h2>
-</div>
+
+    <p className="section-tag">
+      OUR PRESENCE
+    </p>
+
+    <h2>
+      Service Locations
+    </h2>
+
+  </div>
 
   <div className="location-grid">
 
     <div className="location-card">
+
       <h3>
 
-<Location
-size="22"
-variant="Bold"
-color="#b89a5e"
-/>
+        <Location
+          size="22"
+          variant="Bold"
+          color="#b89a5e"
+        />
 
-Hyderabad
+        Hyderabad
 
-</h3>
+      </h3>
+
       <p>120+ Properties Available</p>
+
     </div>
 
     <div className="location-card">
+
       <h3>
+
         <Location
           size="22"
           variant="Bold"
           color="#b89a5e"
         />
+
         Bangalore
+
       </h3>
+
       <p>98+ Properties Available</p>
+
     </div>
 
     <div className="location-card">
+
       <h3>
+
         <Location
           size="22"
           variant="Bold"
           color="#b89a5e"
         />
+
         Chennai
+
       </h3>
+
       <p>82+ Properties Available</p>
+
     </div>
 
     <div className="location-card">
+
       <h3>
+
         <Location
           size="22"
           variant="Bold"
           color="#b89a5e"
         />
+
         Mumbai
+
       </h3>
+
       <p>145+ Properties Available</p>
+
     </div>
 
     <div className="location-card">
+
       <h3>
+
         <Location
           size="22"
           variant="Bold"
           color="#b89a5e"
         />
+
         Pune
+
       </h3>
+
       <p>76+ Properties Available</p>
+
     </div>
 
     <div className="location-card">
+
       <h3>
+
         <Location
           size="22"
           variant="Bold"
           color="#b89a5e"
         />
+
         Coimbatore
+
       </h3>
+
       <p>60+ Properties Available</p>
+
     </div>
 
   </div>
 
 </section>
 
+{/* ================= CTA ================= */}
+
 <section className="cta">
 
-    <div className="cta-header">
+  <div className="cta-header">
 
-        <p className="section-tag">
-            READY TO MOVE?
-        </p>
-
-        <h2>
-            Ready to Find Your Dream Home?
-        </h2>
-
-    </div>
-
-    <p>
-        Let EstateHub help you discover the perfect property with trusted agents and verified listings.
+    <p className="section-tag">
+      READY TO MOVE?
     </p>
 
-    <Link to="/contact">
+    <h2>
+      Ready to Find Your Dream Home?
+    </h2>
+
+  </div>
+
+  <p>
+    Let EstateHub help you discover the perfect property with
+    trusted agents, verified listings and transparent pricing.
+    Schedule a visit today and take the first step toward owning
+    your dream home.
+  </p>
+
+  <Link to="/contact">
+
     <button>
-        Contact Us
+
+      Contact Us
+
+      <ArrowRight2
+        size="18"
+        color="#ffffff"
+        variant="Bold"
+      />
+
     </button>
-    </Link>
+
+  </Link>
 
 </section>
+{/* ================= FOOTER ================= */}
 
 <footer className="footer">
 
   <div className="footer-container">
 
+    {/* Brand */}
+
     <div className="footer-brand">
 
-      <h3>EstateHub</h3>
+      <h3>
+        EstateHub
+      </h3>
 
       <p>
-        Premium real estate platform helping families
-        discover luxury homes across India's finest cities.
+        Premium real estate platform helping families discover
+        luxury apartments, villas and dream homes across India's
+        finest cities with trusted agents and verified properties.
       </p>
 
     </div>
+
+    {/* Quick Links */}
 
     <div className="footer-column footer-links">
 
-      <h4>Quick Links</h4>
+      <h4>
+        Quick Links
+      </h4>
 
-      <Link to="/">Home</Link>
-      <Link to="/browser">Browser</Link>
-      <Link to="/about">About</Link>
-      <Link to="/contact">Contact</Link>
-      <p><Link to="/" style={{ color: "inherit", textDecoration: "none" }}>Home</Link></p>
+      <Link to="/">
+        Home
+      </Link>
 
-      <p><Link to="/property" style={{ color: "inherit", textDecoration: "none" }}>Browser</Link></p>
+      <Link to="/browser">
+        Browser
+      </Link>
 
-      <p><Link to="/about" style={{ color: "inherit", textDecoration: "none" }}>About</Link></p>
+      <Link to="/about">
+        About
+      </Link>
 
-      <p><Link to="/contact" style={{ color: "inherit", textDecoration: "none" }}>Contact</Link></p>
+      <Link to="/contact">
+        Contact
+      </Link>
 
     </div>
+
+    {/* Contact */}
 
     <div className="footer-column footer-contact">
 
-      <h4>Contact</h4>
+      <h4>
+        Contact
+      </h4>
 
       <p>
-        <Call size="18" color="#b89a5e" variant="Bold"/>
+
+        <Call
+          size="18"
+          color="#b89a5e"
+          variant="Bold"
+        />
+
         +91 1234567809
+
       </p>
 
       <p>
-        <Sms size="18" color="#b89a5e" variant="Bold"/>
+
+        <Sms
+          size="18"
+          color="#b89a5e"
+          variant="Bold"
+        />
+
         support@estatehub.com
+
       </p>
 
       <p>
-        <Location size="18" color="#b89a5e" variant="Bold"/>
+
+        <Location
+          size="18"
+          color="#b89a5e"
+          variant="Bold"
+        />
+
         Hyderabad, India
+
       </p>
 
     </div>
 
+    {/* Social */}
+
     <div className="footer-column footer-social">
 
-      <h4>Follow Us</h4>
+      <h4>
+        Follow Us
+      </h4>
 
       <p>Facebook</p>
+
       <p>Instagram</p>
+
       <p>LinkedIn</p>
+
       <p>Twitter</p>
 
     </div>
@@ -774,7 +994,9 @@ Hyderabad
   <hr />
 
   <div className="copyright">
+
     © 2026 EstateHub. All Rights Reserved.
+
   </div>
 
 </footer>
