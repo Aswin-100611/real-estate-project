@@ -602,13 +602,13 @@ Search
 
       <h4>Quick Links</h4>
 
-      <p>Home</p>
+      <p><Link to="/" style={{ color: "inherit", textDecoration: "none" }}>Home</Link></p>
 
-      <p>Browser</p>
+      <p><Link to="/property" style={{ color: "inherit", textDecoration: "none" }}>Browser</Link></p>
 
-      <p>About</p>
+      <p><Link to="/about" style={{ color: "inherit", textDecoration: "none" }}>About</Link></p>
 
-      <p>Contact</p>
+      <p><Link to="/contact" style={{ color: "inherit", textDecoration: "none" }}>Contact</Link></p>
 
     </div>
 

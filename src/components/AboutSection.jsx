@@ -48,9 +48,9 @@ export default function AboutSection() {
 
         <ul className="nav-links">
           <li><Link to="/">Home</Link></li>
-          <li>Browser</li>
+          <li><Link to="/property">Browser</Link></li>
           <li><Link to="/about">About</Link></li>
-          <li>Contact</li>
+          <li><Link to="/contact">Contact</Link></li>
         </ul>
 
         <button className="btn">
@@ -248,8 +248,8 @@ export default function AboutSection() {
         </p>
 
         <div className="about-cta-buttons">
-          <button className="cta-primary">Schedule a Consultation</button>
-          <button className="cta-secondary">Browse Properties</button>
+          <Link to="/contact"><button className="cta-primary">Schedule a Consultation</button></Link>
+          <Link to="/property"><button className="cta-secondary">Browse Properties</button></Link>
         </div>
 
       </section>
