@@ -132,9 +132,9 @@ Estate<span>Hub</span>
 
 <ul className="nav-links">
 <li>Home</li>
-<li>Browser</li>
+<li><Link to="/property">Browser</Link></li>
 <li><Link to="/about">About</Link></li>
-<li>Contact</li>
+<li><Link to="/contact">Contact</Link></li>
 </ul>
 
 <button className="btn">
@@ -696,9 +696,11 @@ Hyderabad
         Let EstateHub help you discover the perfect property with trusted agents and verified listings.
     </p>
 
+    <Link to="/contact">
     <button>
         Contact Us
     </button>
+    </Link>
 
 </section>
 
@@ -725,6 +727,13 @@ Hyderabad
       <Link to="/browser">Browser</Link>
       <Link to="/about">About</Link>
       <Link to="/contact">Contact</Link>
+      <p><Link to="/" style={{ color: "inherit", textDecoration: "none" }}>Home</Link></p>
+
+      <p><Link to="/property" style={{ color: "inherit", textDecoration: "none" }}>Browser</Link></p>
+
+      <p><Link to="/about" style={{ color: "inherit", textDecoration: "none" }}>About</Link></p>
+
+      <p><Link to="/contact" style={{ color: "inherit", textDecoration: "none" }}>Contact</Link></p>
 
     </div>
 

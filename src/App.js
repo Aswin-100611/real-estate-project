@@ -4,6 +4,7 @@ import HeroSection from "./components/HeroSection";
 import AboutSection from "./components/AboutSection";
 import PropertyDetails from "./components/PropertyDetails";
 import PropertyListing from './components/PropertyListing';
+import ContactSection from "./components/ContactSection";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/about" element={<AboutSection />} />
         <Route path="/property/:id" element={<PropertyDetails/>} />
          <Route path="/property" element={<PropertyListing />} />
+        <Route path="/contact" element={<ContactSection />} />
       </Routes>
     </BrowserRouter>
   );
