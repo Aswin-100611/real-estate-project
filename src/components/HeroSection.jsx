@@ -283,12 +283,13 @@ Search
               2 BHK • 1200 sqft
 
             </span>
-
+<Link to={`/property/${item.id}`}>
             <button>
 
               View Property →
 
             </button>
+</Link>
 
           </div>
 
@@ -308,13 +309,13 @@ Search
   </div>
 
   <div className="featured-btn">
-
+ <Link to="/property">
     <button className="explore">
 
       Explore Properties
 
     </button>
-
+</Link>
   </div>
 
 </section>
