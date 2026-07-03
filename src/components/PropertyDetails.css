@@ -78,14 +78,14 @@
 }
 
 .location-rating .rating {
-  color: #f39c12;
+  color: #110e08;
   font-weight: 500;
 }
 
 .icon-location {
   width: 18px;
   height: 18px;
-  color: #c9a96e;
+  color: #e4d7be;
 }
 
 .icon-star {
@@ -919,4 +919,72 @@
   .gallery-nav-btn.next {
     right: 8px;
   }
+}
+/* Rating Stars in Property Details */
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rating-stars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.rating-value {
+  color: #f39c12;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.rating-reviews {
+  color: #7f8c8d;
+  font-size: 13px;
+}
+
+/* Agent avatar with iconsax */
+.agent-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #b89a5e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Similar location icon */
+.similar-location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #7f8c8d;
+  font-size: 12px;
+}
+
+/* Spec cards with icons */
+.spec-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #f0f0f0;
+}
+
+/* Amenity items with icons */
+.amenity-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #2c3e50;
+  border: 1px solid #f0f0f0;
 }

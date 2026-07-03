@@ -13,9 +13,9 @@ function App() {
       <Routes>
         <Route path="/" element={<HeroSection />} />
         <Route path="/about" element={<AboutSection />} />
-        <Route path="/property/:id" element={<PropertyDetails/>} />
-         <Route path="/property" element={<PropertyListing />} />
-         <Route path="/browser" element={<PropertyListing />} />
+        <Route path="/property/:id" element={<PropertyDetails />} />
+        <Route path="/property" element={<PropertyListing />} />
+        <Route path="/browser" element={<PropertyListing />} />
         <Route path="/contact" element={<ContactSection />} />
         <Route path="/agents" element={<AgentsPage />} />
 <Route path="/agent/:id" element={<AgentChat />} />
