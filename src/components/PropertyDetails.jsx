@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { MessageText } from "iconsax-react";
 import {
   Location,
   Buildings,
@@ -18,6 +19,9 @@ import {
  
 } from "iconsax-react";
 import './PropertyDetails.css';
+import agents from "../data/agents";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "../firebase";
 
 // Complete properties array with 20 properties
 const properties = [
@@ -686,6 +690,9 @@ const PropertyDetails = () => {
 
   // Find property by ID
   const property = properties.find(p => p.id === parseInt(id));
+  const assignedAgent = agents.find(
+agent => agent.city === property?.location
+);
 
   // If property not found
   if (!property) {
@@ -714,13 +721,56 @@ const PropertyDetails = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert('Thank you! We\'ll contact you soon.');
-    setShowForm(false);
-    setFormData({ name: '', email: '', phone: '', message: '' });
-  };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
+  console.log("Property:", property);
+  console.log("Assigned Agent:", assignedAgent);
+  console.log("Form Data:", formData);
+
+  try {
+    console.log("Saving to Firestore...");
+
+    const docRef = await addDoc(collection(db, "inquiries"), {
+      propertyId: property.id,
+      propertyName: property.title,
+      propertyLocation: property.location,
+      propertyPrice: property.price,
+
+      agentId: assignedAgent.id,
+      agentName: assignedAgent.name,
+
+      customerName: formData.name,
+      customerEmail: formData.email,
+      customerPhone: formData.phone,
+      message: formData.message,
+
+      status: "Pending",
+      replies: [],
+
+      createdAt: serverTimestamp()
+    });
+
+    console.log("Document ID:", docRef.id);
+
+    alert("Inquiry Sent Successfully!");
+
+    setShowForm(false);
+
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      message: ""
+    });
+
+  } catch (error) {
+    console.error("FULL ERROR:", error);
+    console.error("CODE:", error.code);
+    console.error("MESSAGE:", error.message);
+    alert(error.message);
+  }
+};
   // Function to render star ratings using iconsax
   const renderStars = (rating) => {
     const fullStars = Math.floor(rating);
@@ -1057,6 +1107,64 @@ const PropertyDetails = () => {
               </button>
             </div>
 
+<h4>
+
+Contact Agent
+
+</h4>
+
+<div className="agent-info">
+
+<img
+
+className="agent-avatar"
+
+src={assignedAgent.image}
+
+alt={assignedAgent.name}
+
+/>
+
+<div>
+
+<span className="agent-name">
+
+{assignedAgent.name}
+
+</span>
+
+<span className="agent-title">
+
+{assignedAgent.designation}
+
+</span>
+
+<span className="agent-phone">
+
+{assignedAgent.phone}
+
+</span>
+
+</div>
+
+</div>
+
+
+
+<button
+  className="btn-chat"
+  onClick={() => navigate(`/agent/${assignedAgent.id}`)}
+>
+  <MessageText
+    size="20"
+    color="#ffffff"
+    variant="Bold"
+  />
+
+  Chat With Agent
+</button>
+
+</div>
             {/* Similar Properties */}
             <div className="similar-box">
               <h4>Similar Properties</h4>
@@ -1082,7 +1190,7 @@ const PropertyDetails = () => {
           </div>
         </div>
       </div>
-    </div>
+    
   );
 };
 
