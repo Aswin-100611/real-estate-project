@@ -419,3 +419,69 @@
     font-size: 19px;
   }
 }
+/* Rating Stars */
+.card-rating {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rating-stars {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+
+.star-icon {
+  width: 12px;
+  height: 12px;
+  fill: #f39c12;
+  color: #f39c12;
+}
+
+.star-icon.empty {
+  fill: none;
+  stroke: #f39c12;
+  stroke-width: 2;
+}
+
+.star-icon.half {
+  fill: #f39c12;
+  color: #f39c12;
+}
+
+.rating-value {
+  color: #f39c12;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.rating-reviews {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 11px;
+  font-weight: 400;
+}
+
+
+.card-verified {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #27ae60;
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+}

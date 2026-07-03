@@ -1,8 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import {
+  Location,
+  Buildings,
+  WalletMoney,
+  Verify,
+  Star1,
+  
+  People,
+  
+  DocumentText,
+  SearchNormal,
+  
+  Home,
+  ArrowRight2,
+  Call,
+ 
+} from "iconsax-react";
 import './PropertyDetails.css';
 
-// Complete properties array with unique details for each property
+// Complete properties array with 20 properties
 const properties = [
   {
     id: 1,
@@ -13,6 +30,8 @@ const properties = [
     beds: 3,
     baths: 2,
     area: "1800 sqft",
+    rating: 4.8,
+    reviews: 124,
     description: "Experience luxury living in this stunning 3-bedroom apartment in the heart of Hyderabad. Features premium finishes, smart home technology, and breathtaking city views.",
     amenities: ["Swimming Pool", "Gymnasium", "Parking", "24/7 Security", "Elevator", "Central AC", "Balcony", "Smart Home Features", "Club House", "Children's Play Area"],
     features: {
@@ -37,6 +56,8 @@ const properties = [
     beds: 4,
     baths: 3,
     area: "2800 sqft",
+    rating: 4.9,
+    reviews: 89,
     description: "Spacious 4-bedroom modern villa with a private garden and premium finishes. Located in Bangalore's most sought-after neighborhood with excellent connectivity.",
     amenities: ["Private Garden", "Swimming Pool", "Gymnasium", "Parking", "24/7 Security", "Balcony", "Terrace", "Study Room", "Home Theater", "Wine Cellar"],
     features: {
@@ -61,6 +82,8 @@ const properties = [
     beds: 2,
     baths: 2,
     area: "1350 sqft",
+    rating: 4.6,
+    reviews: 67,
     description: "Beautiful 2-bedroom premium flat with sea views and modern amenities. Perfect for families looking for comfort and convenience in Chennai.",
     amenities: ["Swimming Pool", "Gymnasium", "Parking", "24/7 Security", "Elevator", "Sea View", "Balcony", "Club House", "Indoor Games"],
     features: {
@@ -85,6 +108,8 @@ const properties = [
     beds: 4,
     baths: 3,
     area: "3200 sqft",
+    rating: 4.9,
+    reviews: 156,
     description: "Luxury 4-bedroom penthouse with 360-degree city views, private terrace, and premium amenities. A masterpiece of modern architecture in Mumbai.",
     amenities: ["Private Terrace", "Swimming Pool", "Gymnasium", "Parking", "24/7 Security", "Sky Lounge", "Balcony", "Home Automation", "Jacuzzi", "Private Elevator"],
     features: {
@@ -109,6 +134,8 @@ const properties = [
     beds: 3,
     baths: 2,
     area: "1550 sqft",
+    rating: 4.7,
+    reviews: 93,
     description: "Beautiful 3-bedroom apartment with stunning lake views and peaceful surroundings. Perfect for those seeking tranquility with modern conveniences.",
     amenities: ["Lake View", "Swimming Pool", "Gymnasium", "Parking", "24/7 Security", "Elevator", "Balcony", "Garden", "Jogging Track"],
     features: {
@@ -133,6 +160,8 @@ const properties = [
     beds: 3,
     baths: 2,
     area: "1650 sqft",
+    rating: 4.5,
+    reviews: 78,
     description: "Elegant 3-bedroom homes surrounded by lush greenery and gardens. A perfect blend of nature and modern living in Coimbatore.",
     amenities: ["Private Garden", "Swimming Pool", "Gymnasium", "Parking", "24/7 Security", "Balcony", "Club House", "Tennis Court", "Children's Play Area"],
     features: {
@@ -157,6 +186,8 @@ const properties = [
     beds: 4,
     baths: 3,
     area: "2200 sqft",
+    rating: 4.8,
+    reviews: 112,
     description: "Royal 4-bedroom apartment with premium finishes and panoramic city views. Located in Hyderabad's most prestigious residential area.",
     amenities: ["Swimming Pool", "Gymnasium", "Parking", "24/7 Security", "Elevator", "Balcony", "Club House", "Concierge Service", "Party Hall", "Kids Play Area"],
     features: {
@@ -181,6 +212,8 @@ const properties = [
     beds: 2,
     baths: 2,
     area: "1250 sqft",
+    rating: 4.4,
+    reviews: 56,
     description: "Comfortable 2-bedroom apartment with modern amenities and excellent connectivity. Perfect for young professionals and small families.",
     amenities: ["Swimming Pool", "Gymnasium", "Parking", "24/7 Security", "Elevator", "Balcony", "Club House", "Indoor Games"],
     features: {
@@ -205,6 +238,8 @@ const properties = [
     beds: 3,
     baths: 2,
     area: "1900 sqft",
+    rating: 4.7,
+    reviews: 145,
     description: "Modern 3-bedroom apartment in the heart of Bangalore's IT hub. Features contemporary design, premium amenities, and excellent connectivity.",
     amenities: ["Swimming Pool", "Gymnasium", "Parking", "24/7 Security", "Elevator", "Balcony", "Club House", "Conference Room", "Cafeteria", "Wi-Fi Zone"],
     features: {
@@ -229,6 +264,8 @@ const properties = [
     beds: 3,
     baths: 2,
     area: "1700 sqft",
+    rating: 4.6,
+    reviews: 84,
     description: "Beautiful 3-bedroom homes surrounded by green valleys and scenic views. Perfect for nature lovers seeking peace and tranquility.",
     amenities: ["Valley View", "Swimming Pool", "Gymnasium", "Parking", "24/7 Security", "Balcony", "Terrace Garden", "Yoga Center", "Meditation Hall", "Organic Garden"],
     features: {
@@ -243,10 +280,271 @@ const properties = [
       "Total Floors": "2",
       "Possession": "Ready to Move"
     }
+  },
+  // ========== NEW PROPERTIES (11-20) ==========
+  {
+    id: 11,
+    title: "Sunset Paradise",
+    location: "Goa",
+    price: "₹2.50 Cr",
+    image: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800",
+    beds: 4,
+    baths: 3,
+    area: "3000 sqft",
+    rating: 4.9,
+    reviews: 203,
+    description: "Breathtaking 4-bedroom villa with stunning sunset views over the Arabian Sea. Features infinity pool, private beach access, and luxurious finishes in Goa.",
+    amenities: ["Infinity Pool", "Private Beach Access", "Gymnasium", "Parking", "24/7 Security", "Balcony", "Terrace", "Home Theater", "Wine Cellar", "Spa"],
+    features: {
+      "Property Type": "Villa",
+      "BHK": "4 BHK",
+      "Bathrooms": "3",
+      "Area": "3000 sqft",
+      "Furnishing": "Luxury Furnished",
+      "Parking": "3 Covered",
+      "Age of Property": "0-1 Year",
+      "Floor": "Ground + 1",
+      "Total Floors": "2",
+      "Possession": "Ready to Move"
+    }
+  },
+  {
+    id: 12,
+    title: "Golden Oak Estate",
+    location: "Delhi",
+    price: "₹4.20 Cr",
+    image: "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=800",
+    beds: 5,
+    baths: 4,
+    area: "4200 sqft",
+    rating: 4.8,
+    reviews: 178,
+    description: "Majestic 5-bedroom estate in the heart of Delhi's diplomatic enclave. Features sprawling gardens, private pool, and exquisite craftsmanship.",
+    amenities: ["Private Pool", "Garden", "Gymnasium", "Parking", "24/7 Security", "Balcony", "Terrace", "Study Room", "Library", "Home Office"],
+    features: {
+      "Property Type": "Villa",
+      "BHK": "5 BHK",
+      "Bathrooms": "4",
+      "Area": "4200 sqft",
+      "Furnishing": "Luxury Furnished",
+      "Parking": "4 Covered",
+      "Age of Property": "2-4 Years",
+      "Floor": "Ground + 2",
+      "Total Floors": "3",
+      "Possession": "Immediate"
+    }
+  },
+  {
+    id: 13,
+    title: "Crystal Springs",
+    location: "Jaipur",
+    price: "₹1.80 Cr",
+    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800",
+    beds: 3,
+    baths: 2,
+    area: "2000 sqft",
+    rating: 4.6,
+    reviews: 95,
+    description: "Elegant 3-bedroom apartment with panoramic views of the Pink City. Features traditional architecture with modern amenities and serene surroundings.",
+    amenities: ["Swimming Pool", "Gymnasium", "Parking", "24/7 Security", "Elevator", "Balcony", "Club House", "Garden", "Children's Play Area"],
+    features: {
+      "Property Type": "Apartment",
+      "BHK": "3 BHK",
+      "Bathrooms": "2",
+      "Area": "2000 sqft",
+      "Furnishing": "Fully Furnished",
+      "Parking": "2 Covered",
+      "Age of Property": "1-2 Years",
+      "Floor": "6th Floor",
+      "Total Floors": "12",
+      "Possession": "Immediate"
+    }
+  },
+  {
+    id: 14,
+    title: "Emerald Bay Villas",
+    location: "Kochi",
+    price: "₹2.30 Cr",
+    image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800",
+    beds: 4,
+    baths: 3,
+    area: "2900 sqft",
+    rating: 4.7,
+    reviews: 134,
+    description: "Stunning 4-bedroom villa overlooking the serene backwaters of Kochi. Features modern Kerala architecture with luxurious amenities and waterfront views.",
+    amenities: ["Private Jetty", "Swimming Pool", "Gymnasium", "Parking", "24/7 Security", "Balcony", "Terrace", "Backwater View", "Home Theater"],
+    features: {
+      "Property Type": "Villa",
+      "BHK": "4 BHK",
+      "Bathrooms": "3",
+      "Area": "2900 sqft",
+      "Furnishing": "Fully Furnished",
+      "Parking": "3 Covered",
+      "Age of Property": "0-1 Year",
+      "Floor": "Ground + 1",
+      "Total Floors": "2",
+      "Possession": "Ready to Move"
+    }
+  },
+  {
+    id: 15,
+    title: "Silver Oak Residency",
+    location: "Ahmedabad",
+    price: "₹1.10 Cr",
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800",
+    beds: 3,
+    baths: 2,
+    area: "1600 sqft",
+    rating: 4.5,
+    reviews: 72,
+    description: "Contemporary 3-bedroom apartment with modern amenities in Ahmedabad's most sought-after location. Perfect for families seeking comfort and convenience.",
+    amenities: ["Swimming Pool", "Gymnasium", "Parking", "24/7 Security", "Elevator", "Balcony", "Club House", "Garden", "Jogging Track"],
+    features: {
+      "Property Type": "Apartment",
+      "BHK": "3 BHK",
+      "Bathrooms": "2",
+      "Area": "1600 sqft",
+      "Furnishing": "Fully Furnished",
+      "Parking": "2 Covered",
+      "Age of Property": "2-3 Years",
+      "Floor": "4th Floor",
+      "Total Floors": "10",
+      "Possession": "Immediate"
+    }
+  },
+  {
+    id: 16,
+    title: "Tranquil Meadows",
+    location: "Mysore",
+    price: "₹95 Lakhs",
+    image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800",
+    beds: 3,
+    baths: 2,
+    area: "1750 sqft",
+    rating: 4.4,
+    reviews: 61,
+    description: "Peaceful 3-bedroom home surrounded by lush green meadows and gardens. Perfect for those seeking a serene lifestyle close to nature.",
+    amenities: ["Garden", "Swimming Pool", "Gymnasium", "Parking", "24/7 Security", "Balcony", "Club House", "Yoga Center", "Walking Track"],
+    features: {
+      "Property Type": "Villa",
+      "BHK": "3 BHK",
+      "Bathrooms": "2",
+      "Area": "1750 sqft",
+      "Furnishing": "Semi-Furnished",
+      "Parking": "2 Covered",
+      "Age of Property": "1-2 Years",
+      "Floor": "Ground Floor",
+      "Total Floors": "1",
+      "Possession": "Ready to Move"
+    }
+  },
+  {
+    id: 17,
+    title: "Regal Towers",
+    location: "Mumbai",
+    price: "₹5.50 Cr",
+    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800",
+    beds: 5,
+    baths: 4,
+    area: "4800 sqft",
+    rating: 4.9,
+    reviews: 245,
+    description: "Ultra-luxury 5-bedroom penthouse with panoramic views of Mumbai's skyline and Arabian Sea. Features private pool, home theater, and world-class amenities.",
+    amenities: ["Private Pool", "Home Theater", "Gymnasium", "Parking", "24/7 Security", "Sky Lounge", "Balcony", "Jacuzzi", "Private Elevator", "Concierge"],
+    features: {
+      "Property Type": "Penthouse",
+      "BHK": "5 BHK",
+      "Bathrooms": "4",
+      "Area": "4800 sqft",
+      "Furnishing": "Luxury Furnished",
+      "Parking": "4 Covered",
+      "Age of Property": "0-1 Year",
+      "Floor": "Top Floor",
+      "Total Floors": "30",
+      "Possession": "Immediate"
+    }
+  },
+  {
+    id: 18,
+    title: "Blossom Gardens",
+    location: "Bangalore",
+    price: "₹1.55 Cr",
+    image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800",
+    beds: 3,
+    baths: 2,
+    area: "1850 sqft",
+    rating: 4.6,
+    reviews: 108,
+    description: "Beautiful 3-bedroom apartment in Bangalore's garden city. Features lush green surroundings, modern amenities, and excellent connectivity to IT hubs.",
+    amenities: ["Swimming Pool", "Gymnasium", "Parking", "24/7 Security", "Elevator", "Balcony", "Club House", "Garden", "Kids Play Area"],
+    features: {
+      "Property Type": "Apartment",
+      "BHK": "3 BHK",
+      "Bathrooms": "2",
+      "Area": "1850 sqft",
+      "Furnishing": "Fully Furnished",
+      "Parking": "2 Covered",
+      "Age of Property": "1-2 Years",
+      "Floor": "5th Floor",
+      "Total Floors": "12",
+      "Possession": "Immediate"
+    }
+  },
+  {
+    id: 19,
+    title: "Serene Shores",
+    location: "Visakhapatnam",
+    price: "₹1.35 Cr",
+    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800",
+    beds: 3,
+    baths: 2,
+    area: "1900 sqft",
+    rating: 4.7,
+    reviews: 89,
+    description: "Stunning 3-bedroom apartment with breathtaking sea views and cool coastal breezes. Perfect for those seeking a peaceful lifestyle by the ocean.",
+    amenities: ["Sea View", "Swimming Pool", "Gymnasium", "Parking", "24/7 Security", "Elevator", "Balcony", "Club House", "Jogging Track"],
+    features: {
+      "Property Type": "Apartment",
+      "BHK": "3 BHK",
+      "Bathrooms": "2",
+      "Area": "1900 sqft",
+      "Furnishing": "Fully Furnished",
+      "Parking": "2 Covered",
+      "Age of Property": "1-2 Years",
+      "Floor": "7th Floor",
+      "Total Floors": "15",
+      "Possession": "Immediate"
+    }
+  },
+  {
+    id: 20,
+    title: "Heritage Homes",
+    location: "Jaipur",
+    price: "₹2.80 Cr",
+    image: "https://images.unsplash.com/photo-1460317442991-0ec209397118?w=800",
+    beds: 4,
+    baths: 3,
+    area: "3500 sqft",
+    rating: 4.8,
+    reviews: 156,
+    description: "Exquisite 4-bedroom heritage-style villa with traditional Rajasthani architecture and modern luxury. Features private courtyard, garden, and premium finishes.",
+    amenities: ["Private Courtyard", "Garden", "Swimming Pool", "Gymnasium", "Parking", "24/7 Security", "Balcony", "Terrace", "Home Theater", "Library"],
+    features: {
+      "Property Type": "Villa",
+      "BHK": "4 BHK",
+      "Bathrooms": "3",
+      "Area": "3500 sqft",
+      "Furnishing": "Luxury Furnished",
+      "Parking": "3 Covered",
+      "Age of Property": "2-4 Years",
+      "Floor": "Ground + 2",
+      "Total Floors": "3",
+      "Possession": "Immediate"
+    }
   }
 ];
 
-// Gallery images for each property (different images for variety)
+// Gallery images for each property (20 properties with unique images)
 const propertyGalleries = {
   1: [
     "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800",
@@ -307,6 +605,66 @@ const propertyGalleries = {
     "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=800",
     "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800",
     "https://images.unsplash.com/photo-1560448204-5f59f8fc3ac4?w=800"
+  ],
+  11: [
+    "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800",
+    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800",
+    "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800"
+  ],
+  12: [
+    "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=800",
+    "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800",
+    "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800",
+    "https://images.unsplash.com/photo-1576941089067-2de3c901e126?w=800"
+  ],
+  13: [
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800",
+    "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=800",
+    "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800"
+  ],
+  14: [
+    "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800",
+    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800",
+    "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=800",
+    "https://images.unsplash.com/photo-1560448204-5f59f8fc3ac4?w=800"
+  ],
+  15: [
+    "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800",
+    "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800",
+    "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800"
+  ],
+  16: [
+    "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800",
+    "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800",
+    "https://images.unsplash.com/photo-1560448204-5f59f8fc3ac4?w=800",
+    "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800"
+  ],
+  17: [
+    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800",
+    "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=800",
+    "https://images.unsplash.com/photo-1576941089067-2de3c901e126?w=800"
+  ],
+  18: [
+    "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800",
+    "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800",
+    "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=800",
+    "https://images.unsplash.com/photo-1560448204-5f59f8fc3ac4?w=800"
+  ],
+  19: [
+    "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800",
+    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800",
+    "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800"
+  ],
+  20: [
+    "https://images.unsplash.com/photo-1460317442991-0ec209397118?w=800",
+    "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800",
+    "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800",
+    "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=800"
   ]
 };
 
@@ -363,6 +721,41 @@ const PropertyDetails = () => {
     setFormData({ name: '', email: '', phone: '', message: '' });
   };
 
+  // Function to render star ratings using iconsax
+  const renderStars = (rating) => {
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+    
+    let stars = [];
+    
+    // Full stars
+    for (let i = 0; i < fullStars; i++) {
+      stars.push(
+        <Star1
+          key={`full-${i}`}
+          size={16}
+          variant="Bold"
+          color="#f39c12"
+        />
+      );
+    }
+    
+    // Empty stars
+    for (let i = 0; i < emptyStars; i++) {
+      stars.push(
+        <Star1
+          key={`empty-${i}`}
+          size={16}
+          variant="Outline"
+          color="#f39c12"
+        />
+      );
+    }
+    
+    return stars;
+  };
+
   // Use property's own details
   const propertyDetails = {
     beds: property.beds,
@@ -380,7 +773,7 @@ const PropertyDetails = () => {
         <nav className="breadcrumb">
           <Link to="/">Home</Link>
           <span>›</span>
-          <Link to="/">Properties</Link>
+          <Link to="/property">Properties</Link>
           <span>›</span>
           <span className="current">{property.title}</span>
         </nav>
@@ -391,17 +784,15 @@ const PropertyDetails = () => {
             <h1>{property.title}</h1>
             <div className="location-rating">
               <span className="location">
-                <svg className="icon-location" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                  <circle cx="12" cy="10" r="3"/>
-                </svg>
+                <Location size={18} color="#b89a5e" variant="Bold" />
                 {property.location}
               </span>
               <span className="rating">
-                <svg className="icon-star" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-                </svg>
-                4.8 (120 reviews)
+                <span className="rating-stars">
+                  {renderStars(property.rating)}
+                </span>
+                <span className="rating-value">{property.rating}</span>
+                <span className="rating-reviews">({property.reviews} reviews)</span>
               </span>
             </div>
             <div className="price-section">
@@ -411,19 +802,11 @@ const PropertyDetails = () => {
           </div>
           <div className="header-right">
             <button className="btn-favorite">
-              <svg className="icon-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-              </svg>
+              <Star1 size={18} variant="Bold" color="#2c3e50" />
               Save
             </button>
             <button className="btn-share">
-              <svg className="icon-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="18" cy="5" r="3"/>
-                <circle cx="6" cy="12" r="3"/>
-                <circle cx="18" cy="19" r="3"/>
-                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
-                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-              </svg>
+              <ArrowRight2 size={18} variant="Bold" color="#2c3e50" />
               Share
             </button>
           </div>
@@ -470,43 +853,28 @@ const PropertyDetails = () => {
             {/* Quick Specs */}
             <div className="quick-specs">
               <div className="spec-card">
-                <svg className="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="2" y="3" width="20" height="18" rx="2" ry="2"/>
-                  <line x1="8" y1="21" x2="16" y2="21"/>
-                  <line x1="12" y1="3" x2="12" y2="21"/>
-                </svg>
+                <Home size={24} variant="Bold" color="#b89a5e" />
                 <div>
                   <span className="spec-label">Bedrooms</span>
                   <span className="spec-value">{propertyDetails.beds} BHK</span>
                 </div>
               </div>
               <div className="spec-card">
-                <svg className="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M12 2v20M2 12h20"/>
-                </svg>
+                <Buildings size={24} variant="Bold" color="#b89a5e" />
                 <div>
                   <span className="spec-label">Bathrooms</span>
                   <span className="spec-value">{propertyDetails.baths}</span>
                 </div>
               </div>
               <div className="spec-card">
-                <svg className="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                  <line x1="3" y1="9" x2="21" y2="9"/>
-                  <line x1="3" y1="15" x2="21" y2="15"/>
-                  <line x1="9" y1="21" x2="9" y2="9"/>
-                </svg>
+                <WalletMoney size={24} variant="Bold" color="#b89a5e" />
                 <div>
                   <span className="spec-label">Area</span>
                   <span className="spec-value">{propertyDetails.area}</span>
                 </div>
               </div>
               <div className="spec-card">
-                <svg className="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="2" y="2" width="20" height="20" rx="2" ry="2"/>
-                  <line x1="2" y1="7" x2="22" y2="7"/>
-                </svg>
+                <DocumentText size={24} variant="Bold" color="#b89a5e" />
                 <div>
                   <span className="spec-label">Type</span>
                   <span className="spec-value">{propertyDetails.features["Property Type"]}</span>
@@ -539,9 +907,7 @@ const PropertyDetails = () => {
               <div className="amenity-grid">
                 {propertyDetails.amenities.map((amenity, index) => (
                   <div key={index} className="amenity-item">
-                    <svg className="amenity-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                      <polyline points="20 6 9 17 4 12"/>
-                    </svg>
+                    <Verify size={18} variant="Bold" color="#27ae60" />
                     <span>{amenity}</span>
                   </div>
                 ))}
@@ -553,39 +919,28 @@ const PropertyDetails = () => {
               <h2>Location & Nearby</h2>
               <div className="nearby-grid">
                 <div className="nearby-item">
-                  <svg className="nearby-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M12 2v4M12 18v4M4 12H2M22 12h-2M19.07 4.93l-2.83 2.83M7.76 16.24l-2.83 2.83M16.24 7.76l2.83-2.83M4.93 19.07l2.83-2.83"/>
-                  </svg>
+                  <Location size={22} variant="Bold" color="#b89a5e" />
                   <div>
                     <span className="nearby-label">Schools</span>
                     <span className="nearby-value">5+ Schools within 2 km</span>
                   </div>
                 </div>
                 <div className="nearby-item">
-                  <svg className="nearby-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
-                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-                  </svg>
+                  <Buildings size={22} variant="Bold" color="#b89a5e" />
                   <div>
                     <span className="nearby-label">Hospitals</span>
                     <span className="nearby-value">3 Hospitals within 3 km</span>
                   </div>
                 </div>
                 <div className="nearby-item">
-                  <svg className="nearby-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
-                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-                  </svg>
+                  <WalletMoney size={22} variant="Bold" color="#b89a5e" />
                   <div>
                     <span className="nearby-label">Shopping</span>
                     <span className="nearby-value">2 Malls within 1 km</span>
                   </div>
                 </div>
                 <div className="nearby-item">
-                  <svg className="nearby-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <polyline points="12 6 12 12 16 14"/>
-                  </svg>
+                  <SearchNormal size={22} variant="Bold" color="#b89a5e" />
                   <div>
                     <span className="nearby-label">Transport</span>
                     <span className="nearby-value">Metro & Bus Stop nearby</span>
@@ -607,28 +962,21 @@ const PropertyDetails = () => {
               <div className="inquiry-stats">
                 <div className="stat">
                   <span>
-                    <svg className="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                      <circle cx="12" cy="12" r="3"/>
-                    </svg>
+                    <SearchNormal size={16} variant="Bold" color="#b89a5e" />
                     Views
                   </span>
                   <span>245</span>
                 </div>
                 <div className="stat">
                   <span>
-                    <svg className="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                    </svg>
+                    <Star1 size={16} variant="Bold" color="#b89a5e" />
                     Saved
                   </span>
                   <span>78</span>
                 </div>
                 <div className="stat">
                   <span>
-                    <svg className="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                    </svg>
+                    <Call size={16} variant="Bold" color="#b89a5e" />
                     Inquiries
                   </span>
                   <span>12</span>
@@ -691,17 +1039,20 @@ const PropertyDetails = () => {
             <div className="agent-box">
               <h4>Contact Agent</h4>
               <div className="agent-info">
-                <div className="agent-avatar">RK</div>
+                <div className="agent-avatar">
+                  <People size={24} variant="Bold" color="#ffffff" />
+                </div>
                 <div>
-                  <span className="agent-name">Rajesh Kumar</span>
+                  <span className="agent-name">Gopi Maries R</span>
                   <span className="agent-title">Senior Sales Executive</span>
-                  <span className="agent-phone">+91 98765 43210</span>
+                  <span className="agent-phone">
+                    <Call size={16} variant="Bold" color="#b89a5e" />
+                    +91 0987654321
+                  </span>
                 </div>
               </div>
               <button className="btn-call">
-                <svg className="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                </svg>
+                <Call size={18} variant="Bold" color="#ffffff" />
                 Call Now
               </button>
             </div>
@@ -719,7 +1070,10 @@ const PropertyDetails = () => {
                       <div>
                         <span className="similar-title">{p.title}</span>
                         <span className="similar-price">{p.price}</span>
-                        <span className="similar-location">{p.location}</span>
+                        <span className="similar-location">
+                          <Location size={14} color="#b89a5e" variant="Bold" />
+                          {p.location}
+                        </span>
                       </div>
                     </Link>
                   ))}
