@@ -20,7 +20,6 @@ import {
   Sms,
   Heart,
   ProfileCircle,
-  Setting2,
   Login,
   Logout,
 CloseCircle
@@ -139,11 +138,7 @@ export default function HeroSection() {
   const [propertyType, setPropertyType] = useState("Villa");
   const [budget, setBudget] = useState("₹20L - ₹50L");
   const [showProfileMenu, setShowProfileMenu] = useState(false);
-
 const [showLogin, setShowLogin] = useState(false);
-
-const [showSettings, setShowSettings] = useState(false);
-
 const [username, setUsername] = useState(
 localStorage.getItem("username") || ""
 );
@@ -232,16 +227,7 @@ setShowProfileMenu(false);
 
 };
 
-const saveSettings=()=>{
 
-localStorage.setItem("username",username);
-
-localStorage.setItem("mobile",mobile);
-
-
-setShowSettings(false);
-
-};
   return (
 
 <div className="page">
@@ -264,6 +250,9 @@ Estate<span>Hub</span>
 
 <li>
 <Link to="/about">About</Link>
+</li>
+<li>
+<Link to="/agents">Agents</Link>
 </li>
 
 <li>
@@ -329,22 +318,7 @@ Estate<span>Hub</span>
                 </div>
 
                 <hr />
-<button
-onClick={()=>{
-setShowProfileMenu(false);
-setShowSettings(true);
-}}
->
 
-<Setting2
-size="18"
-color="#b89a5e"
-variant="Bold"
-/>
-
-Settings
-
-</button>
                 {isLoggedIn ? (
 
                     <button onClick={handleLogout}>
@@ -1267,173 +1241,6 @@ Search
       Login
 
     </button>
-
-  </div>
-
-</div>
-
-)}
-{/* ================= SETTINGS MODAL ================= */}
-
-{showSettings && (
-
-<div className="modal-overlay">
-
-  <div className="settings-modal">
-
-    <button
-      className="close-btn"
-      onClick={()=>setShowSettings(false)}
-    >
-
-      <CloseCircle
-        size="28"
-        color="#b89a5e"
-        variant="Bold"
-      />
-
-    </button>
-
-    <h2>
-
-      Settings
-
-    </h2>
-
-    <div className="settings-section">
-
-      <h3>
-        Profile Information
-      </h3>
-
-      <div className="input-group">
-
-        <label>
-          Username
-        </label>
-
-        <input
-          type="text"
-          value={username}
-          onChange={(e)=>setUsername(e.target.value)}
-        />
-
-      </div>
-
-      <div className="input-group">
-
-        <label>
-          Mobile Number
-        </label>
-
-        <input
-          type="tel"
-          value={mobile}
-          onChange={(e)=>setMobile(e.target.value)}
-        />
-
-      </div>
-
-    </div>
-
-   <div className="settings-section">
-
-  <h3>
-    Account Status
-  </h3>
-
-  <p>
-
-    <strong>Status :</strong> {isLoggedIn ? "Logged In" : "Guest"}
-
-  </p>
-
-  <p>
-
-    <strong>Member Since :</strong> 2026
-
-  </p>
-
-</div>
-
-    <div className="settings-section">
-
-  <h3>
-    Help & Support
-  </h3>
-
-  <p>
-
-    <Sms
-      size="18"
-      color="#b89a5e"
-      variant="Bold"
-    />
-
-    support@estatehub.com
-
-  </p>
-
-  <p>
-
-    <Call
-      size="18"
-      color="#b89a5e"
-      variant="Bold"
-    />
-
-    +91 1234567809
-
-  </p>
-
-</div>
-<div className="settings-section">
-
-  <h3>
-    About EstateHub
-  </h3>
-
-  <p>
-
-    Version 1.0
-
-  </p>
-
-  <p>
-
-    Privacy Policy
-
-  </p>
-
-  <p>
-
-    Terms & Conditions
-
-  </p>
-
-</div>
-
-    <div className="settings-buttons">
-
-      <button
-        className="save-btn"
-        onClick={saveSettings}
-      >
-
-        Save Changes
-
-      </button>
-
-      <button
-        className="logout-btn"
-        onClick={handleLogout}
-      >
-
-        Logout
-
-      </button>
-
-    </div>
 
   </div>
 

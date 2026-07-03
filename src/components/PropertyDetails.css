@@ -653,25 +653,29 @@
   margin-top: 2px;
 }
 
-.btn-call {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px;
-  background: #2c3e50;
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s;
+.btn-chat{
+    width:100%;
+    margin-top:15px;
+    height:54px;
+    border:none;
+    border-radius:12px;
+    background:var(--gold);
+    color:#fff;
+    font-size:1rem;
+    font-weight:600;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+    transition:.35s;
+    box-shadow:0 10px 25px rgba(184,154,94,.25);
 }
 
-.btn-call:hover {
-  background: #1a2632;
+.btn-chat:hover{
+    transform:translateY(-3px);
+    background:#c5a86c;
+    box-shadow:0 16px 35px rgba(184,154,94,.35);
 }
 
 .icon-phone {
