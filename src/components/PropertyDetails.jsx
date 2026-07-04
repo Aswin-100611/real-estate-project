@@ -6,8 +6,8 @@ import {
   Buildings,
   WalletMoney,
   Verify,
+  Heart,
   Star1,
-  
   People,
   
   DocumentText,
@@ -20,7 +20,10 @@ import {
 } from "iconsax-react";
 import './PropertyDetails.css';
 import agents from "../data/agents";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp, query,
+where,
+getDocs,
+deleteDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 // Complete properties array with 20 properties
@@ -289,7 +292,7 @@ const properties = [
   {
     id: 11,
     title: "Sunset Paradise",
-    location: "Goa",
+    location: "Bangalore",
     price: "₹2.50 Cr",
     image: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800",
     beds: 4,
@@ -315,7 +318,7 @@ const properties = [
   {
     id: 12,
     title: "Golden Oak Estate",
-    location: "Delhi",
+    location: "Hyderabad",
     price: "₹4.20 Cr",
     image: "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=800",
     beds: 5,
@@ -341,7 +344,7 @@ const properties = [
   {
     id: 13,
     title: "Crystal Springs",
-    location: "Jaipur",
+    location: "Pune",
     price: "₹1.80 Cr",
     image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800",
     beds: 3,
@@ -367,7 +370,7 @@ const properties = [
   {
     id: 14,
     title: "Emerald Bay Villas",
-    location: "Kochi",
+    location: "Mumbai",
     price: "₹2.30 Cr",
     image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800",
     beds: 4,
@@ -393,7 +396,7 @@ const properties = [
   {
     id: 15,
     title: "Silver Oak Residency",
-    location: "Ahmedabad",
+    location: "Coimbatore",
     price: "₹1.10 Cr",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800",
     beds: 3,
@@ -419,7 +422,7 @@ const properties = [
   {
     id: 16,
     title: "Tranquil Meadows",
-    location: "Mysore",
+    location: "Chennai",
     price: "₹95 Lakhs",
     image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800",
     beds: 3,
@@ -497,7 +500,7 @@ const properties = [
   {
     id: 19,
     title: "Serene Shores",
-    location: "Visakhapatnam",
+    location: "Coimbatore",
     price: "₹1.35 Cr",
     image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800",
     beds: 3,
@@ -523,7 +526,7 @@ const properties = [
   {
     id: 20,
     title: "Heritage Homes",
-    location: "Jaipur",
+    location: "Pune",
     price: "₹2.80 Cr",
     image: "https://images.unsplash.com/photo-1460317442991-0ec209397118?w=800",
     beds: 4,
@@ -683,16 +686,90 @@ const PropertyDetails = () => {
     phone: '',
     message: ''
   });
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [id]);
-
+  const [saved, setSaved] = useState(false);
+  
   // Find property by ID
   const property = properties.find(p => p.id === parseInt(id));
   const assignedAgent = agents.find(
 agent => agent.city === property?.location
 );
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [id]);
+  useEffect(() => {
+
+    const checkWishlist = async () => {
+
+        const username = localStorage.getItem("username");
+
+        const mobile = localStorage.getItem("mobile");
+
+        if (!username) return;
+
+        const q = query(
+            collection(db, "wishlist"),
+            where("username", "==", username),
+            where("mobile", "==", mobile),
+            where("propertyId", "==", property.id)
+        );
+
+        const snapshot = await getDocs(q);
+
+        setSaved(!snapshot.empty);
+
+    };
+
+    if(property){
+        checkWishlist();
+    }
+
+}, [property]);
+const handleWishlist = async () => {
+
+    if (localStorage.getItem("isLoggedIn") !== "true") {
+        alert("Please login first.");
+        return;
+    }
+
+    const username = localStorage.getItem("username");
+    const mobile = localStorage.getItem("mobile");
+
+    const q = query(
+        collection(db, "wishlist"),
+        where("username", "==", username),
+        where("mobile", "==", mobile),
+        where("propertyId", "==", property.id)
+    );
+
+    const snapshot = await getDocs(q);
+
+    if (snapshot.empty) {
+
+        await addDoc(collection(db, "wishlist"), {
+            username,
+            mobile,
+            propertyId: property.id,
+            propertyTitle: property.title,
+            propertyPrice: property.price,
+            propertyLocation: property.location,
+            propertyImage: property.image,
+            createdAt: serverTimestamp()
+        });
+
+        setSaved(true);
+        alert("Added to Wishlist ❤️");
+
+    } else {
+
+        await deleteDoc(snapshot.docs[0].ref);
+
+        setSaved(false);
+        alert("Removed from Wishlist");
+    }
+
+};
+
 
   // If property not found
   if (!property) {
@@ -851,9 +928,12 @@ agent => agent.city === property?.location
             </div>
           </div>
           <div className="header-right">
-            <button className="btn-favorite">
-              <Star1 size={18} variant="Bold" color="#2c3e50" />
-              Save
+            <button
+className="btn-favorite"
+onClick={handleWishlist}
+>
+              <Heart size={18} variant="Bold" color="#2c3e50" />
+              {saved ? "Saved" : "Save"}
             </button>
             <button className="btn-share">
               <ArrowRight2 size={18} variant="Bold" color="#2c3e50" />
@@ -1101,10 +1181,7 @@ agent => agent.city === property?.location
                   </span>
                 </div>
               </div>
-              <button className="btn-call">
-                <Call size={18} variant="Bold" color="#ffffff" />
-                Call Now
-              </button>
+             
             </div>
 
 <h4>

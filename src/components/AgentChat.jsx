@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+
 import "./AgentChat.css";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { db } from "../firebase";
 import agents from "../data/agents";
 
@@ -9,7 +10,8 @@ import {
   Call,
   MessageText,
   User,
-  Send2
+  Send2,
+  ArrowLeft2
 } from "iconsax-react";
 import {
   collection,
@@ -61,6 +63,13 @@ function AgentChat() {
   return (
 
     <div className="agent-chat-page">
+     <Link to="/agents" className="chat-back-btn">
+    <ArrowLeft2
+        size="24"
+        color="currentColor"
+        variant="Outline"
+    />
+</Link>
 
       {/* LEFT PANEL */}
 
