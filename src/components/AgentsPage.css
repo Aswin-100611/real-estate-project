@@ -2,6 +2,41 @@
     min-height:100vh;
     background:#f8f6f2;
 }
+.back-home-btn{
+
+    position:absolute;
+
+    top:35px;
+    left:60px;
+
+    padding:12px 24px;
+
+    border-radius:50px;
+
+    background:rgba(255,255,255,.95);
+
+    color:#222;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    backdrop-filter:blur(10px);
+
+    transition:.3s;
+
+    z-index:20;
+}
+
+.back-home-btn:hover{
+
+    background:#c9a96e;
+
+    color:white;
+
+    transform:translateY(-3px);
+
+}
 .agents-hero{
     padding:120px 20px 70px;
     text-align:center;
@@ -10,6 +45,7 @@
     url("https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1800&q=80")
     center/cover no-repeat;
     color:#fff;
+
 }
 
 .agents-hero .section-tag{

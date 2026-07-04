@@ -262,15 +262,18 @@ export default function HeroSection() {
         </ul>
         <div className="nav-actions">
 
-          <button className="wishlist-btn">
+          <button
+  className="wishlist-btn"
+  onClick={() => navigate("/wishlist")}
+>
 
-            <Heart
-              size="24"
-              color="#ffffff"
-              variant="Bold"
-            />
+  <Heart
+    size="24"
+    color="#ffffff"
+    variant="Bold"
+  />
 
-          </button>
+</button>
 
           <div className="profile-wrapper">
 

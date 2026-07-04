@@ -77,10 +77,6 @@ export default function ContactSection() {
           <li><Link to="/contact">Contact</Link></li>
         </ul>
 
-        <button className="btn">
-          My Account
-        </button>
-
       </nav>
 
       {/* ——— FULL-PAGE DARK CONTACT SECTION ——— */}

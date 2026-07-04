@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./AgentsPage.css";
 import agents from "../data/agents";
 
@@ -28,6 +29,9 @@ function AgentsPage() {
       {/* ================= HERO ================= */}
 
       <section className="agents-hero">
+        <Link to="/" className="back-home-btn">
+    ← Back to Home
+</Link>
 
         <p className="section-tag">
 

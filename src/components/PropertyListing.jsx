@@ -128,7 +128,7 @@ const properties = [
   {
     id: 11,
     title: "Sunset Paradise",
-    location: "Goa",
+    location: "Bangalore",
     price: "₹2.50 Cr",
     image: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800",
     beds: 4,
@@ -140,7 +140,7 @@ const properties = [
   {
     id: 12,
     title: "Golden Oak Estate",
-    location: "Delhi",
+    location: "Hyderabad",
     price: "₹4.20 Cr",
     image: "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=800",
     beds: 5,
@@ -152,7 +152,7 @@ const properties = [
   {
     id: 13,
     title: "Crystal Springs",
-    location: "Jaipur",
+    location: "Pune",
     price: "₹1.80 Cr",
     image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800",
     beds: 3,
@@ -164,7 +164,7 @@ const properties = [
   {
     id: 14,
     title: "Emerald Bay Villas",
-    location: "Kochi",
+    location: "Mumbai",
     price: "₹2.30 Cr",
     image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800",
     beds: 4,
@@ -176,7 +176,7 @@ const properties = [
   {
     id: 15,
     title: "Silver Oak Residency",
-    location: "Ahmedabad",
+    location: "Coimbatore",
     price: "₹1.10 Cr",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800",
     beds: 3,
@@ -188,7 +188,7 @@ const properties = [
   {
     id: 16,
     title: "Tranquil Meadows",
-    location: "Mysore",
+    location: "Chennai",
     price: "₹95 Lakhs",
     image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800",
     beds: 3,
@@ -224,7 +224,7 @@ const properties = [
   {
     id: 19,
     title: "Serene Shores",
-    location: "Visakhapatnam",
+    location: "Coimbatore",
     price: "₹1.35 Cr",
     image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800",
     beds: 3,
@@ -236,7 +236,7 @@ const properties = [
   {
     id: 20,
     title: "Heritage Homes",
-    location: "Jaipur",
+    location: "Pune",
     price: "₹2.80 Cr",
     image: "https://images.unsplash.com/photo-1460317442991-0ec209397118?w=800",
     beds: 4,
@@ -350,7 +350,35 @@ const PropertyListing = () => {
 
   return (
     <div className="listing-page">
-      <div className="container">
+      <div className="listing-hero">
+
+    <Link to="/" className="back-home-btn">
+        ← Back to Home
+    </Link>
+
+    <div className="listing-overlay">
+
+    <span className="hero-tag">
+        PREMIUM COLLECTION
+    </span>
+
+    <div className="hero-line"></div>
+
+    <h1>
+        Explore Premium <br />
+        Properties
+    </h1>
+
+    <p>
+        Discover luxury apartments, elegant villas and exclusive
+        residences across India's most desirable cities.
+        
+    </p>
+
+</div>
+
+</div>
+      <div className="container listing-content">
         {/* Page Header */}
         <div className="listing-header">
           <h1>Explore Properties</h1>
