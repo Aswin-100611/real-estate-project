@@ -6,24 +6,22 @@ import {
   Buildings,
   WalletMoney,
   Verify,
+  Heart,
   Star1,
-  
-  People,
-  
   DocumentText,
   SearchNormal,
-  
   Home,
-  ArrowRight2,
   Call,
  
 } from "iconsax-react";
 import './PropertyDetails.css';
 import agents from "../data/agents";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp, query,
+where,
+getDocs,
+deleteDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
-// Complete properties array with 20 properties
 const properties = [
   {
     id: 1,
@@ -285,11 +283,10 @@ const properties = [
       "Possession": "Ready to Move"
     }
   },
-  // ========== NEW PROPERTIES (11-20) ==========
   {
     id: 11,
     title: "Sunset Paradise",
-    location: "Goa",
+    location: "Bangalore",
     price: "₹2.50 Cr",
     image: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800",
     beds: 4,
@@ -315,7 +312,7 @@ const properties = [
   {
     id: 12,
     title: "Golden Oak Estate",
-    location: "Delhi",
+    location: "Hyderabad",
     price: "₹4.20 Cr",
     image: "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=800",
     beds: 5,
@@ -341,7 +338,7 @@ const properties = [
   {
     id: 13,
     title: "Crystal Springs",
-    location: "Jaipur",
+    location: "Pune",
     price: "₹1.80 Cr",
     image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800",
     beds: 3,
@@ -367,7 +364,7 @@ const properties = [
   {
     id: 14,
     title: "Emerald Bay Villas",
-    location: "Kochi",
+    location: "Mumbai",
     price: "₹2.30 Cr",
     image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800",
     beds: 4,
@@ -393,7 +390,7 @@ const properties = [
   {
     id: 15,
     title: "Silver Oak Residency",
-    location: "Ahmedabad",
+    location: "Coimbatore",
     price: "₹1.10 Cr",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800",
     beds: 3,
@@ -419,7 +416,7 @@ const properties = [
   {
     id: 16,
     title: "Tranquil Meadows",
-    location: "Mysore",
+    location: "Chennai",
     price: "₹95 Lakhs",
     image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800",
     beds: 3,
@@ -497,7 +494,7 @@ const properties = [
   {
     id: 19,
     title: "Serene Shores",
-    location: "Visakhapatnam",
+    location: "Coimbatore",
     price: "₹1.35 Cr",
     image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800",
     beds: 3,
@@ -523,7 +520,7 @@ const properties = [
   {
     id: 20,
     title: "Heritage Homes",
-    location: "Jaipur",
+    location: "Pune",
     price: "₹2.80 Cr",
     image: "https://images.unsplash.com/photo-1460317442991-0ec209397118?w=800",
     beds: 4,
@@ -547,8 +544,6 @@ const properties = [
     }
   }
 ];
-
-// Gallery images for each property (20 properties with unique images)
 const propertyGalleries = {
   1: [
     "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800",
@@ -683,18 +678,67 @@ const PropertyDetails = () => {
     phone: '',
     message: ''
   });
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [id]);
-
-  // Find property by ID
+  const [saved, setSaved] = useState(false);
   const property = properties.find(p => p.id === parseInt(id));
   const assignedAgent = agents.find(
 agent => agent.city === property?.location
 );
 
-  // If property not found
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [id]);
+  useEffect(() => {
+
+    const checkWishlist = async () => {
+        const username = localStorage.getItem("username");
+        const mobile = localStorage.getItem("mobile");
+        if (!username) return;
+        const q = query(
+            collection(db, "wishlist"),
+            where("username", "==", username),
+            where("mobile", "==", mobile),
+            where("propertyId", "==", property.id)
+        );
+        const snapshot = await getDocs(q);
+        setSaved(!snapshot.empty);
+    };
+    if(property){
+        checkWishlist();
+    }
+}, [property]);
+const handleWishlist = async () => {
+    if (localStorage.getItem("isLoggedIn") !== "true") {
+        alert("Please login first.");
+        return;
+    }
+    const username = localStorage.getItem("username");
+    const mobile = localStorage.getItem("mobile");
+    const q = query(
+        collection(db, "wishlist"),
+        where("username", "==", username),
+        where("mobile", "==", mobile),
+        where("propertyId", "==", property.id)
+    );
+    const snapshot = await getDocs(q);
+    if (snapshot.empty) {
+        await addDoc(collection(db, "wishlist"), {
+            username,
+            mobile,
+            propertyId: property.id,
+            propertyTitle: property.title,
+            propertyPrice: property.price,
+            propertyLocation: property.location,
+            propertyImage: property.image,
+            createdAt: serverTimestamp()
+        });
+        setSaved(true);
+        alert("Added to Wishlist ❤️");
+    } else {
+        await deleteDoc(snapshot.docs[0].ref);
+        setSaved(false);
+        alert("Removed from Wishlist");
+    }
+};
   if (!property) {
     return (
       <div className="not-found">
@@ -704,33 +748,24 @@ agent => agent.city === property?.location
       </div>
     );
   }
-
-  // Get gallery images for this property
   const galleryImages = propertyGalleries[property.id] || [property.image, property.image, property.image, property.image];
-
-  // Gallery navigation
   const nextImage = () => {
     setActiveImage((prev) => (prev + 1) % galleryImages.length);
   };
-
   const prevImage = () => {
     setActiveImage((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
   };
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
   const handleSubmit = async (e) => {
   e.preventDefault();
-
   console.log("Property:", property);
   console.log("Assigned Agent:", assignedAgent);
   console.log("Form Data:", formData);
 
   try {
     console.log("Saving to Firestore...");
-
     const docRef = await addDoc(collection(db, "inquiries"), {
       propertyId: property.id,
       propertyName: property.title,
@@ -750,13 +785,9 @@ agent => agent.city === property?.location
 
       createdAt: serverTimestamp()
     });
-
     console.log("Document ID:", docRef.id);
-
     alert("Inquiry Sent Successfully!");
-
     setShowForm(false);
-
     setFormData({
       name: "",
       email: "",
@@ -771,42 +802,7 @@ agent => agent.city === property?.location
     alert(error.message);
   }
 };
-  // Function to render star ratings using iconsax
-  const renderStars = (rating) => {
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 >= 0.5;
-    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-    
-    let stars = [];
-    
-    // Full stars
-    for (let i = 0; i < fullStars; i++) {
-      stars.push(
-        <Star1
-          key={`full-${i}`}
-          size={16}
-          variant="Bold"
-          color="#f39c12"
-        />
-      );
-    }
-    
-    // Empty stars
-    for (let i = 0; i < emptyStars; i++) {
-      stars.push(
-        <Star1
-          key={`empty-${i}`}
-          size={16}
-          variant="Outline"
-          color="#f39c12"
-        />
-      );
-    }
-    
-    return stars;
-  };
-
-  // Use property's own details
+  
   const propertyDetails = {
     beds: property.beds,
     baths: property.baths,
@@ -819,7 +815,6 @@ agent => agent.city === property?.location
   return (
     <div className="property-page">
       <div className="container">
-        {/* Breadcrumb */}
         <nav className="breadcrumb">
           <Link to="/">Home</Link>
           <span>›</span>
@@ -828,41 +823,27 @@ agent => agent.city === property?.location
           <span className="current">{property.title}</span>
         </nav>
 
-        {/* Property Header */}
         <div className="property-header-section">
           <div className="header-left">
             <h1>{property.title}</h1>
-            <div className="location-rating">
-              <span className="location">
-                <Location size={18} color="#b89a5e" variant="Bold" />
-                {property.location}
-              </span>
-              <span className="rating">
-                <span className="rating-stars">
-                  {renderStars(property.rating)}
-                </span>
-                <span className="rating-value">{property.rating}</span>
-                <span className="rating-reviews">({property.reviews} reviews)</span>
-              </span>
-            </div>
+            
             <div className="price-section">
               <span className="price">{property.price}</span>
               <span className="price-detail">EMI starts at ₹45,000/month</span>
             </div>
           </div>
           <div className="header-right">
-            <button className="btn-favorite">
-              <Star1 size={18} variant="Bold" color="#2c3e50" />
-              Save
+            <button
+className="btn-favorite"
+onClick={handleWishlist}
+>
+              <Heart size={18} variant="Bold" color="#2c3e50" />
+              {saved ? "Saved" : "Save"}
             </button>
-            <button className="btn-share">
-              <ArrowRight2 size={18} variant="Bold" color="#2c3e50" />
-              Share
-            </button>
+            
           </div>
         </div>
 
-        {/* Gallery */}
         <div className="gallery-section">
           <div className="gallery-main">
             <img src={galleryImages[activeImage]} alt={property.title} />
@@ -896,11 +877,8 @@ agent => agent.city === property?.location
           </div>
         </div>
 
-        {/* Main Content */}
         <div className="details-grid">
-          {/* Left Column */}
           <div className="details-main">
-            {/* Quick Specs */}
             <div className="quick-specs">
               <div className="spec-card">
                 <Home size={24} variant="Bold" color="#b89a5e" />
@@ -932,13 +910,11 @@ agent => agent.city === property?.location
               </div>
             </div>
 
-            {/* Description */}
             <div className="section">
               <h2>About This Property</h2>
               <p>{propertyDetails.description}</p>
             </div>
 
-            {/* Key Features */}
             <div className="section">
               <h2>Key Features</h2>
               <div className="feature-grid">
@@ -951,7 +927,6 @@ agent => agent.city === property?.location
               </div>
             </div>
 
-            {/* Amenities */}
             <div className="section">
               <h2>Amenities & Facilities</h2>
               <div className="amenity-grid">
@@ -964,7 +939,6 @@ agent => agent.city === property?.location
               </div>
             </div>
 
-            {/* Location & Nearby */}
             <div className="section">
               <h2>Location & Nearby</h2>
               <div className="nearby-grid">
@@ -1000,9 +974,7 @@ agent => agent.city === property?.location
             </div>
           </div>
 
-          {/* Right Column - Sidebar */}
           <div className="details-sidebar">
-            {/* Inquiry Box */}
             <div className="inquiry-box">
               <div className="inquiry-header">
                 <h3>Interested in this property?</h3>
@@ -1084,72 +1056,32 @@ agent => agent.city === property?.location
                 </form>
               )}
             </div>
-
-            {/* Contact Agent */}
             <div className="agent-box">
-              <h4>Contact Agent</h4>
-              <div className="agent-info">
-                <div className="agent-avatar">
-                  <People size={24} variant="Bold" color="#ffffff" />
-                </div>
-                <div>
-                  <span className="agent-name">Gopi Maries R</span>
-                  <span className="agent-title">Senior Sales Executive</span>
-                  <span className="agent-phone">
-                    <Call size={16} variant="Bold" color="#b89a5e" />
-                    +91 0987654321
-                  </span>
-                </div>
-              </div>
-              <button className="btn-call">
-                <Call size={18} variant="Bold" color="#ffffff" />
-                Call Now
-              </button>
-            </div>
-
-<h4>
-
+              <h4>
 Contact Agent
-
 </h4>
 
 <div className="agent-info">
-
 <img
-
 className="agent-avatar"
-
 src={assignedAgent.image}
-
 alt={assignedAgent.name}
-
 />
-
 <div>
-
 <span className="agent-name">
-
 {assignedAgent.name}
-
 </span>
 
 <span className="agent-title">
-
 {assignedAgent.designation}
-
 </span>
 
 <span className="agent-phone">
-
 {assignedAgent.phone}
-
 </span>
 
 </div>
-
 </div>
-
-
 
 <button
   className="btn-chat"
@@ -1160,12 +1092,11 @@ alt={assignedAgent.name}
     color="#ffffff"
     variant="Bold"
   />
-
   Chat With Agent
 </button>
+            </div>
 
 </div>
-            {/* Similar Properties */}
             <div className="similar-box">
               <h4>Similar Properties</h4>
               <div className="similar-list">
@@ -1189,9 +1120,7 @@ alt={assignedAgent.name}
             </div>
           </div>
         </div>
-      </div>
-    
+      </div>    
   );
 };
-
 export default PropertyDetails;

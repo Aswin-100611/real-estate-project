@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './PropertyListing.css';
 
-// Complete properties array with 20 properties
 const properties = [
   {
     id: 1,
@@ -128,7 +127,7 @@ const properties = [
   {
     id: 11,
     title: "Sunset Paradise",
-    location: "Goa",
+    location: "Bangalore",
     price: "₹2.50 Cr",
     image: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800",
     beds: 4,
@@ -140,7 +139,7 @@ const properties = [
   {
     id: 12,
     title: "Golden Oak Estate",
-    location: "Delhi",
+    location: "Hyderabad",
     price: "₹4.20 Cr",
     image: "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=800",
     beds: 5,
@@ -152,7 +151,7 @@ const properties = [
   {
     id: 13,
     title: "Crystal Springs",
-    location: "Jaipur",
+    location: "Pune",
     price: "₹1.80 Cr",
     image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800",
     beds: 3,
@@ -164,7 +163,7 @@ const properties = [
   {
     id: 14,
     title: "Emerald Bay Villas",
-    location: "Kochi",
+    location: "Mumbai",
     price: "₹2.30 Cr",
     image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800",
     beds: 4,
@@ -176,7 +175,7 @@ const properties = [
   {
     id: 15,
     title: "Silver Oak Residency",
-    location: "Ahmedabad",
+    location: "Coimbatore",
     price: "₹1.10 Cr",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800",
     beds: 3,
@@ -188,7 +187,7 @@ const properties = [
   {
     id: 16,
     title: "Tranquil Meadows",
-    location: "Mysore",
+    location: "Chennai",
     price: "₹95 Lakhs",
     image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800",
     beds: 3,
@@ -224,7 +223,7 @@ const properties = [
   {
     id: 19,
     title: "Serene Shores",
-    location: "Visakhapatnam",
+    location: "Coimbatore",
     price: "₹1.35 Cr",
     image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800",
     beds: 3,
@@ -236,7 +235,7 @@ const properties = [
   {
     id: 20,
     title: "Heritage Homes",
-    location: "Jaipur",
+    location: "Pune",
     price: "₹2.80 Cr",
     image: "https://images.unsplash.com/photo-1460317442991-0ec209397118?w=800",
     beds: 4,
@@ -254,18 +253,13 @@ const PropertyListing = () => {
   const [propertyType, setPropertyType] = useState('All');
   const [viewMode, setViewMode] = useState('grid');
 
-  // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
   }, []);
-
-  // Get unique locations for filter
   const locations = ['All', ...new Set(properties.map(p => p.location))];
-
-  // Filter properties based on search and filters
   const filteredProperties = properties.filter(property => {
     const matchesSearch = property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           property.location.toLowerCase().includes(searchTerm.toLowerCase());
@@ -303,17 +297,13 @@ const PropertyListing = () => {
     setSelectedLocation('All');
     setPriceRange('All');
     setPropertyType('All');
-  };
-
-  // Function to render star ratings
+  }
   const renderStars = (rating) => {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 >= 0.5;
     const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
     
     let stars = [];
-    
-    // Full stars
     for (let i = 0; i < fullStars; i++) {
       stars.push(
         <svg key={`full-${i}`} className="star-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -321,8 +311,6 @@ const PropertyListing = () => {
         </svg>
       );
     }
-    
-    // Half star
     if (hasHalfStar) {
       stars.push(
         <svg key="half" className="star-icon half" viewBox="0 0 24 24" fill="currentColor">
@@ -335,8 +323,6 @@ const PropertyListing = () => {
         </svg>
       );
     }
-    
-    // Empty stars
     for (let i = 0; i < emptyStars; i++) {
       stars.push(
         <svg key={`empty-${i}`} className="star-icon empty" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -350,14 +336,40 @@ const PropertyListing = () => {
 
   return (
     <div className="listing-page">
-      <div className="container">
-        {/* Page Header */}
+      <div className="listing-hero">
+
+    <Link to="/" className="back-home-btn">
+        ← Back to Home
+    </Link>
+
+    <div className="listing-overlay">
+
+    <span className="hero-tag">
+        PREMIUM COLLECTION
+    </span>
+
+    <div className="hero-line"></div>
+
+    <h1>
+        Explore Premium <br />
+        Properties
+    </h1>
+
+    <p>
+        Discover luxury apartments, elegant villas and exclusive
+        residences across India's most desirable cities.
+        
+    </p>
+
+</div>
+
+</div>
+      <div className="container listing-content">
         <div className="listing-header">
           <h1>Explore Properties</h1>
           <p>Find your dream home from our curated collection</p>
         </div>
 
-        {/* Search and Filter Bar */}
         <div className="filter-section">
           <div className="search-bar">
             <svg className="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -412,7 +424,6 @@ const PropertyListing = () => {
             </button>
           </div>
 
-          {/* Listing Controls */}
           <div className="listing-controls">
             <span className="results-count">
               {filteredProperties.length} properties found
@@ -446,7 +457,6 @@ const PropertyListing = () => {
           </div>
         </div>
 
-        {/* Property Cards */}
         {filteredProperties.length === 0 ? (
           <div className="no-results">
             <h3>No properties found</h3>

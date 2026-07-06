@@ -3,44 +3,29 @@ import { Link } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import "./ContactSection.css";
 
-// ——— EmailJS Configuration ———
-// Follow these steps to set up EmailJS:
-// 1. Go to https://www.emailjs.com/ and create a free account
-// 2. Add an Email Service (Gmail) → copy the Service ID
-// 3. Create an Email Template with variables: {{from_name}}, {{from_email}}, {{message}}
-//    Set the "To Email" in the template to: aswinramrm1061@gmail.com
-// 4. Go to Account → General → copy your Public Key
-// 5. Replace the placeholders below with your actual keys
-
-const EMAILJS_SERVICE_ID = "service_n3oizzh";   // e.g. "service_abc1234"
-const EMAILJS_TEMPLATE_ID = "template_6t46y8y"; // e.g. "template_xyz5678"
-const EMAILJS_PUBLIC_KEY = "c2enONqTGBu9otFww";    // e.g. "aBcDeFgHiJkLmN"
+const EMAILJS_SERVICE_ID = "service_n3oizzh";   
+const EMAILJS_TEMPLATE_ID = "template_6t46y8y"; 
+const EMAILJS_PUBLIC_KEY = "c2enONqTGBu9otFww";
 
 export default function ContactSection() {
-
   const formRef = useRef();
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: ""
   });
-
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
-
   const handleChange = (e) => {
     const fieldMap = { from_name: "name", from_email: "email", message: "message" };
     const stateKey = fieldMap[e.target.name] || e.target.name;
     setFormData((prev) => ({ ...prev, [stateKey]: e.target.value }));
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setSending(true);
     setError("");
-
     emailjs
       .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formRef.current, EMAILJS_PUBLIC_KEY)
       .then(() => {
@@ -58,11 +43,8 @@ export default function ContactSection() {
   };
 
   return (
-
     <div className="contact-page">
-
       <nav className="navbar">
-
         <div className="logo">
           <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
             Estate<span>Hub</span>
@@ -76,23 +58,13 @@ export default function ContactSection() {
           <li><Link to="/agents">Agents</Link></li>
           <li><Link to="/contact">Contact</Link></li>
         </ul>
-
-        <button className="btn">
-          My Account
-        </button>
-
       </nav>
 
-      {/* ——— FULL-PAGE DARK CONTACT SECTION ——— */}
-
       <section className="contact-fullpage">
-
         <div className="contact-fullpage-overlay"></div>
 
         <div className="contact-fullpage-content">
-
           <p className="contact-tag">GET IN TOUCH</p>
-
           <h1 className="contact-heading">
             We'd love to<br />hear from you!
           </h1>
@@ -117,9 +89,7 @@ export default function ContactSection() {
           )}
 
           <form className="contact-form" ref={formRef} onSubmit={handleSubmit}>
-
             <input type="hidden" name="to_email" value="estatehub321@gmail.com" />
-
             <input
               type="text"
               name="from_name"
@@ -149,7 +119,6 @@ export default function ContactSection() {
             <button type="submit" className="contact-send-btn" disabled={sending}>
               {sending ? "SENDING..." : "SEND"} <span>{sending ? "⏳" : "↗"}</span>
             </button>
-
           </form>
 
           <div className="contact-info-strip">
@@ -183,15 +152,10 @@ export default function ContactSection() {
               </div>
             </div>
           </div>
-
         </div>
-
       </section>
 
-      {/* ——— FOOTER ——— */}
-
       <footer className="footer">
-
         <div className="footer-container">
 
           <div>
@@ -243,9 +207,6 @@ export default function ContactSection() {
         </p>
 
       </footer>
-
     </div>
-
   );
-
 }

@@ -7,6 +7,7 @@ import PropertyListing from './components/PropertyListing';
 import ContactSection from "./components/ContactSection";
 import AgentsPage from "./components/AgentsPage";
 import AgentChat from "./components/AgentChat";
+import WishList from "./components/WishList";
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +20,7 @@ function App() {
         <Route path="/contact" element={<ContactSection />} />
         <Route path="/agents" element={<AgentsPage />} />
 <Route path="/agent/:id" element={<AgentChat />} />
+<Route path="/wishlist" element={<WishList />} />
       </Routes>
     </BrowserRouter>
   );
