@@ -37,9 +37,6 @@ const team = [
 export default function AboutSection() {
   return (
     <div className="page">
-
-      {/* Navbar (same as HeroSection) */}
-
       <nav className="navbar">
 
         <div className="logo">
@@ -57,10 +54,7 @@ export default function AboutSection() {
         <button className="btn">
           My Account
         </button>
-
       </nav>
-
-      {/* About Hero Banner */}
 
       <section className="about-hero">
 
@@ -84,8 +78,6 @@ export default function AboutSection() {
         </div>
 
       </section>
-
-      {/* Our Story */}
 
       <section className="about-story">
 
@@ -128,8 +120,6 @@ export default function AboutSection() {
 
       </section>
 
-      {/* Stats */}
-
       <section className="about-stats">
 
         {stats.map((item, i) => (
@@ -141,11 +131,8 @@ export default function AboutSection() {
 
       </section>
 
-      {/* Core Values — Redesigned Layout */}
-
       <section className="about-values-v2">
 
-        {/* Left Column */}
         <div className="values-left">
 
           <p className="values-tag">
@@ -176,7 +163,6 @@ export default function AboutSection() {
 
         </div>
 
-        {/* Right Column — Mission & Vision Cards */}
         <div className="values-right">
 
           <div className="mv-card mv-card--mission">
@@ -214,8 +200,6 @@ export default function AboutSection() {
 
       </section>
 
-      {/* Team */}
-
       <section className="about-team">
 
         <h2>Meet Our Leadership</h2>
@@ -234,10 +218,6 @@ export default function AboutSection() {
         </div>
 
       </section>
-
-
-
-      {/* CTA */}
 
       <section className="about-cta">
 

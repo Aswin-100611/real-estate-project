@@ -1,17 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
-/* =====================================================
-                CONTACT SECTION
-===================================================== */
-
 .contact-page {
     width: 100%;
     overflow: hidden;
     background: var(--charcoal);
 }
-
-/* ---------------- CONTACT NAVBAR ---------------- */
-
 .contact-page .navbar {
     position: absolute;
     top: 0;
@@ -28,7 +21,6 @@
             rgba(0, 0, 0, .30),
             rgba(0, 0, 0, 0));
 }
-
 .contact-page .logo {
     font-size: 2.3rem;
     font-family: "Cormorant Garamond", serif;
@@ -36,17 +28,14 @@
     color: var(--gold);
     letter-spacing: .5px;
 }
-
 .contact-page .logo span {
     color: #fff;
 }
-
 .contact-page .nav-links {
     display: flex;
     list-style: none;
     gap: 42px;
 }
-
 .contact-page .nav-links li {
     font-size: 15px;
     font-weight: 500;
@@ -54,16 +43,13 @@
     transition: .3s;
     color: #fff;
 }
-
 .contact-page .nav-links li:hover {
     color: var(--gold-light);
 }
-
 .contact-page .nav-links a {
     color: inherit;
     text-decoration: none;
 }
-
 .contact-page .btn {
     padding: 12px 24px;
     border-radius: 10px;
@@ -74,15 +60,10 @@
     cursor: pointer;
     transition: .3s;
 }
-
 .contact-page .btn:hover {
     background: var(--gold);
     color: var(--charcoal);
 }
-
-/* =====================================================
-        FULL-PAGE DARK CONTACT SECTION
-===================================================== */
 
 .contact-fullpage {
     min-height: 100vh;
@@ -95,7 +76,6 @@
         linear-gradient(rgba(0, 0, 0, .72), rgba(0, 0, 0, .72)),
         url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80") center/cover fixed;
 }
-
 .contact-fullpage-overlay {
     position: absolute;
     inset: 0;
@@ -105,15 +85,12 @@
             rgba(30, 28, 26, .80) 40%,
             rgba(30, 28, 26, .70) 100%);
 }
-
 .contact-fullpage-content {
     position: relative;
     z-index: 5;
     width: 100%;
     max-width: 680px;
 }
-
-/* ---------- HEADING AREA ---------- */
 
 .contact-tag {
     display: inline-block;
@@ -124,7 +101,6 @@
     margin-bottom: 28px;
     text-transform: uppercase;
 }
-
 .contact-heading {
     font-family: "Cormorant Garamond", serif;
     font-size: 4.8rem;
@@ -133,7 +109,6 @@
     margin-bottom: 24px;
     font-weight: 700;
 }
-
 .contact-subtitle {
     font-size: 1.05rem;
     line-height: 1.9;
@@ -141,8 +116,6 @@
     max-width: 540px;
     margin-bottom: 50px;
 }
-
-/* ---------- SUCCESS MESSAGE ---------- */
 
 .contact-success {
     background: rgba(184, 154, 94, .15);
@@ -154,8 +127,6 @@
     font-weight: 500;
     font-size: .95rem;
 }
-
-/* ---------- FORM ---------- */
 
 .contact-form {
     display: flex;
@@ -177,25 +148,20 @@
     outline: none;
     transition: .3s;
 }
-
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
     color: rgba(255, 255, 255, .4);
 }
-
 .contact-form input:focus,
 .contact-form textarea:focus {
     border-color: var(--gold);
     box-shadow: 0 0 0 3px rgba(184, 154, 94, .12);
 }
-
 .contact-form textarea {
     border-radius: 22px;
     resize: vertical;
     min-height: 150px;
 }
-
-/* ---------- SEND BUTTON ---------- */
 
 .contact-send-btn {
     align-self: flex-start;
@@ -213,23 +179,18 @@
     align-items: center;
     gap: 10px;
 }
-
 .contact-send-btn span {
     font-size: 1.1rem;
     transition: .3s;
 }
-
 .contact-send-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 30px rgba(184, 154, 94, .35);
     background: var(--gold-light);
 }
-
 .contact-send-btn:hover span {
     transform: translate(3px, -3px);
 }
-
-/* ---------- CONTACT INFO STRIP ---------- */
 
 .contact-info-strip {
     display: flex;
@@ -238,13 +199,11 @@
     padding-top: 45px;
     border-top: 1px solid rgba(255, 255, 255, .10);
 }
-
 .contact-info-item {
     display: flex;
     align-items: center;
     gap: 14px;
 }
-
 .contact-info-icon {
     width: 44px;
     height: 44px;
@@ -255,7 +214,6 @@
     justify-content: center;
     font-size: 18px;
 }
-
 .contact-info-label {
     font-size: .75rem;
     letter-spacing: 1.5px;
@@ -263,32 +221,24 @@
     color: rgba(255, 255, 255, .4);
     margin-bottom: 4px;
 }
-
 .contact-info-item p {
     color: rgba(255, 255, 255, .7);
     font-size: .9rem;
 }
-
 .contact-info-item a {
     color: var(--gold-light);
     text-decoration: none;
     font-size: .9rem;
     transition: .3s;
 }
-
 .contact-info-item a:hover {
     color: #fff;
 }
-
 .contact-info-divider {
     width: 1px;
     height: 40px;
     background: rgba(255, 255, 255, .10);
 }
-
-/* =====================================================
-        CONTACT FOOTER
-===================================================== */
 
 .contact-page .footer {
     background: #181614;
@@ -303,94 +253,73 @@
     gap: 8px;
     justify-content: flex-start;
 }
-
 .contact-page .footer-container {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 40px;
 }
-
 .contact-page .footer h3 {
     font-size: 2rem;
     margin-bottom: 18px;
     font-family: "Cormorant Garamond", serif;
     color: var(--gold);
 }
-
 .contact-page .footer h4 {
     margin-bottom: 18px;
     color: #fff;
 }
-
 .contact-page .footer p {
     margin-bottom: 12px;
     color: #c9c9c9;
     cursor: pointer;
     transition: .3s;
 }
-
 .contact-page .footer p:hover {
     color: var(--gold);
 }
-
 .contact-page .footer hr {
     margin: 45px 0 25px;
     border: none;
     height: 1px;
     background: #444;
 }
-
 .contact-page .footer p.copyright {
     text-align: center;
     color: #aaa;
 }
 
-/* =====================================================
-                RESPONSIVE
-===================================================== */
-
 @media(max-width:1100px) {
-
     .contact-page .footer-container {
         grid-template-columns: repeat(2, 1fr);
     }
-
 }
 
 @media(max-width:768px) {
-
     .contact-page .navbar {
         padding: 0 20px;
     }
-
     .contact-page .nav-links {
         display: none;
     }
-
     .contact-heading {
         font-size: 3.2rem;
     }
-
     .contact-fullpage {
         padding: 120px 24px 60px;
     }
-
     .contact-info-strip {
         flex-direction: column;
         align-items: flex-start;
         gap: 22px;
     }
-
     .contact-info-divider {
         width: 100%;
         height: 1px;
     }
-
     .contact-page .footer-container {
         grid-template-columns: 1fr;
         text-align: center;
     }
-
     .footer-contact-item {
         justify-content: center;
     }
@@ -398,22 +327,17 @@
     .contact-page .footer {
         padding: 70px 20px;
     }
-
 }
 
 @media(max-width:500px) {
-
     .contact-heading {
         font-size: 2.6rem;
     }
-
     .contact-subtitle {
         font-size: .95rem;
     }
-
     .contact-form input,
     .contact-form textarea {
         padding: 15px 20px;
     }
-
 }
