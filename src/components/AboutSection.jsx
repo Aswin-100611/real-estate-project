@@ -36,7 +36,7 @@ const team = [
 
 export default function AboutSection() {
   return (
-    <div className="page">
+    <div className="page about-page">
       <nav className="navbar">
 
         <div className="logo">
@@ -51,9 +51,6 @@ export default function AboutSection() {
           <li><Link to="/contact">Contact</Link></li>
         </ul>
 
-        <button className="btn">
-          My Account
-        </button>
       </nav>
 
       <section className="about-hero">
