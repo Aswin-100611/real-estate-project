@@ -1,201 +1,132 @@
-/* Property Listing Page */
 .listing-page{
-
     min-height:100vh;
-
     background:linear-gradient(
         180deg,
         #f8f5ef 0%,
         #fbfaf7 45%,
         #ffffff 100%
     );
-
 }
 .listing-hero{
-    height:520px;
-
+    min-height:520px;
+    height:auto;
+    padding:120px 20px 150px;
     position:relative;
-
     display:flex;
     justify-content:center;
     align-items:center;
-
     background:
     linear-gradient(
         rgba(18,18,18,.55),
         rgba(18,18,18,.55)
     ),
     url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1800");
-
     background-size:cover;
     background-position:center;
-
     overflow:hidden;
 }
 .listing-hero::after{
-
     content:"";
-
     position:absolute;
-
     bottom:-120px;
     left:-10%;
-
     width:120%;
     height:220px;
-
     background:#f8f6f1;
-
     border-radius:50% 50% 0 0;
-
 }
 .listing-overlay{
-
     position:relative;
     z-index:5;
-
     text-align:center;
-
     color:white;
-
     max-width:850px;
-
     padding:20px;
 }
 .hero-tag{
-
     display:inline-block;
-
     color:#d6b36b;
-
     letter-spacing:8px;
-
     font-size:15px;
-
     font-weight:700;
-
     text-transform:uppercase;
 }
 .hero-line{
-
     width:140px;
     height:2px;
-
     background:#d6b36b;
-
     margin:22px auto 30px;
 }
 .listing-overlay h1{
-
-    font-size:72px;
-
+    font-size:64px;
     line-height:1.1;
-
     margin-bottom:25px;
-
     font-family:Georgia,serif;
-
     font-weight:600;
-
     color:white;
 }
 .listing-overlay p{
-
     max-width:720px;
-
     margin:auto;
-
     font-size:20px;
-
     line-height:1.9;
-
     color:#f2f2f2;
 }
 .back-home-btn{
-
     position:absolute;
-
     top:35px;
     left:60px;
-
     z-index:10;
-
     padding:14px 28px;
-
     border-radius:50px;
-
     background:rgba(255,255,255,.95);
-
     color:#222;
-
     font-weight:600;
-
     text-decoration:none;
-
     backdrop-filter:blur(12px);
-
     transition:.35s;
 }
-
 .back-home-btn:hover{
-
     background:#c9a96e;
-
     color:white;
-
     transform:translateY(-3px);
 }
-
 .listing-content{
-
     margin-top:-120px;
-
     position:relative;
-
     z-index:20;
-
 }
-
 .container {
   max-width: 1240px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* Page Header */
 .listing-header {
   text-align: center;
   margin-bottom: 35px;
 }
-
 .listing-header h1 {
   font-size: 36px;
   color: #1a1a1a;
   margin-bottom: 8px;
 }
-
 .listing-header p {
   color: #7f8c8d;
   font-size: 16px;
 }
 .filter-section{
-
     background:white;
-
     border-radius:22px;
-
     padding:30px;
-
     box-shadow:
     0 20px 50px rgba(0,0,0,.08);
-
 }
-/* Search Bar */
+
 .search-bar {
   position: relative;
   margin-bottom: 18px;
 }
-
 .search-icon {
   position: absolute;
   left: 14px;
@@ -205,7 +136,6 @@
   height: 20px;
   stroke: #7f8c8d;
 }
-
 .search-bar input {
   width: 100%;
   padding: 14px 14px 14px 44px;
@@ -215,14 +145,12 @@
   transition: border-color 0.2s;
   background: #f8f9fa;
 }
-
 .search-bar input:focus {
   outline: none;
   border-color: #c9a96e;
   background: #ffffff;
 }
 
-/* Filter Grid */
 .filter-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr auto;
@@ -264,7 +192,6 @@
   background: #c0392b;
 }
 
-/* Listing Controls */
 .listing-controls {
   display: flex;
   justify-content: space-between;
@@ -313,7 +240,6 @@
   stroke: #c9a96e;
 }
 
-/* Properties Grid */
 .properties-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -324,29 +250,19 @@
   grid-template-columns: 1fr;
 }
 
-/* Property Card */
 .property-card{
-
     border-radius:22px;
-
     overflow:hidden;
-
     background:white;
-
     transition:.35s;
-
     box-shadow:
     0 12px 35px rgba(0,0,0,.08);
-
 }
 .property-card:hover{
-
     transform:
     translateY(-12px);
-
     box-shadow:
     0 28px 55px rgba(0,0,0,.15);
-
 }
 
 .card-image {
@@ -456,7 +372,6 @@
   background: #b8985a;
 }
 
-/* List View Styles */
 .properties-grid.list-view .property-card {
   display: flex;
   flex-direction: row;
@@ -480,7 +395,6 @@
   justify-content: center;
 }
 
-/* No Results */
 .no-results {
   text-align: center;
   padding: 60px 20px;
@@ -514,7 +428,6 @@
   background: #b8985a;
 }
 
-/* Responsive */
 @media (max-width: 1024px) {
   .properties-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -558,32 +471,130 @@
   }
 }
 
-@media (max-width: 480px) {
-  .listing-page {
-    padding: 20px 0 40px;
-  }
-  
-  .filter-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .clear-filters {
-    grid-column: span 1;
-  }
-  
-  .filter-section {
-    padding: 18px;
-  }
-  
-  .card-content h3 {
-    font-size: 16px;
-  }
-  
-  .card-price {
-    font-size: 19px;
-  }
+@media (max-width:480px){
+
+.listing-page{
+    overflow-x:hidden;
+    padding:0;
 }
-/* Rating Stars */
+
+.listing-hero{
+    height:360px;
+    padding:20px;
+}
+
+.listing-hero::after{
+    height:110px;
+    bottom:-55px;
+}
+
+.back-home-btn{
+    top:18px;
+    left:18px;
+    padding:10px 18px;
+    font-size:14px;
+}
+
+.hero-tag{
+    font-size:12px;
+    letter-spacing:5px;
+}
+
+.hero-line{
+    width:80px;
+    margin:14px auto 18px;
+}
+
+.listing-overlay{
+    padding:0 10px;
+}
+
+.listing-overlay h1{
+    font-size:52px;
+    line-height:1.05;
+    margin-bottom:18px;
+}
+
+.listing-overlay p{
+    font-size:16px;
+    line-height:1.6;
+}
+
+.listing-content{
+    margin-top:-45px;
+}
+
+.container{
+    padding:0 15px;
+}
+
+.listing-header{
+    margin-bottom:25px;
+}
+
+.listing-header h1{
+    font-size:24px;
+}
+
+.listing-header p{
+    font-size:15px;
+}
+
+
+.filter-section{
+    padding:22px;
+    border-radius:22px;
+}
+
+.filter-grid{
+    grid-template-columns:1fr;
+    gap:14px;
+}
+
+.clear-filters{
+    grid-column:auto;
+    width:100%;
+}
+
+.search-bar input,
+.filter-select{
+    height:54px;
+    font-size:15px;
+}
+
+.listing-controls{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:15px;
+}
+
+.view-toggle{
+    width:100%;
+}
+
+.view-btn{
+    flex:1;
+    justify-content:center;
+    height:48px;
+}
+
+.properties-grid{
+    grid-template-columns:1fr;
+    gap:22px;
+}
+
+.card-content{
+    padding:18px;
+}
+
+.card-price{
+    font-size:28px;
+}
+
+.card-btn{
+    width:100%;
+}
+}
 .card-rating {
   position: absolute;
   top: 12px;
@@ -636,7 +647,6 @@
   font-size: 11px;
   font-weight: 400;
 }
-
 
 .card-verified {
   position: absolute;

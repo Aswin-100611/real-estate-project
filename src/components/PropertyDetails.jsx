@@ -8,13 +8,9 @@ import {
   Verify,
   Heart,
   Star1,
-  People,
-  
   DocumentText,
   SearchNormal,
-  
   Home,
-  ArrowRight2,
   Call,
  
 } from "iconsax-react";
@@ -26,7 +22,6 @@ getDocs,
 deleteDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
-// Complete properties array with 20 properties
 const properties = [
   {
     id: 1,
@@ -288,7 +283,6 @@ const properties = [
       "Possession": "Ready to Move"
     }
   },
-  // ========== NEW PROPERTIES (11-20) ==========
   {
     id: 11,
     title: "Sunset Paradise",
@@ -550,8 +544,6 @@ const properties = [
     }
   }
 ];
-
-// Gallery images for each property (20 properties with unique images)
 const propertyGalleries = {
   1: [
     "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800",
@@ -687,8 +679,6 @@ const PropertyDetails = () => {
     message: ''
   });
   const [saved, setSaved] = useState(false);
-  
-  // Find property by ID
   const property = properties.find(p => p.id === parseInt(id));
   const assignedAgent = agents.find(
 agent => agent.city === property?.location
@@ -700,52 +690,37 @@ agent => agent.city === property?.location
   useEffect(() => {
 
     const checkWishlist = async () => {
-
         const username = localStorage.getItem("username");
-
         const mobile = localStorage.getItem("mobile");
-
         if (!username) return;
-
         const q = query(
             collection(db, "wishlist"),
             where("username", "==", username),
             where("mobile", "==", mobile),
             where("propertyId", "==", property.id)
         );
-
         const snapshot = await getDocs(q);
-
         setSaved(!snapshot.empty);
-
     };
-
     if(property){
         checkWishlist();
     }
-
 }, [property]);
 const handleWishlist = async () => {
-
     if (localStorage.getItem("isLoggedIn") !== "true") {
         alert("Please login first.");
         return;
     }
-
     const username = localStorage.getItem("username");
     const mobile = localStorage.getItem("mobile");
-
     const q = query(
         collection(db, "wishlist"),
         where("username", "==", username),
         where("mobile", "==", mobile),
         where("propertyId", "==", property.id)
     );
-
     const snapshot = await getDocs(q);
-
     if (snapshot.empty) {
-
         await addDoc(collection(db, "wishlist"), {
             username,
             mobile,
@@ -756,22 +731,14 @@ const handleWishlist = async () => {
             propertyImage: property.image,
             createdAt: serverTimestamp()
         });
-
         setSaved(true);
         alert("Added to Wishlist ❤️");
-
     } else {
-
         await deleteDoc(snapshot.docs[0].ref);
-
         setSaved(false);
         alert("Removed from Wishlist");
     }
-
 };
-
-
-  // If property not found
   if (!property) {
     return (
       <div className="not-found">
@@ -781,33 +748,24 @@ const handleWishlist = async () => {
       </div>
     );
   }
-
-  // Get gallery images for this property
   const galleryImages = propertyGalleries[property.id] || [property.image, property.image, property.image, property.image];
-
-  // Gallery navigation
   const nextImage = () => {
     setActiveImage((prev) => (prev + 1) % galleryImages.length);
   };
-
   const prevImage = () => {
     setActiveImage((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
   };
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
   const handleSubmit = async (e) => {
   e.preventDefault();
-
   console.log("Property:", property);
   console.log("Assigned Agent:", assignedAgent);
   console.log("Form Data:", formData);
 
   try {
     console.log("Saving to Firestore...");
-
     const docRef = await addDoc(collection(db, "inquiries"), {
       propertyId: property.id,
       propertyName: property.title,
@@ -827,13 +785,9 @@ const handleWishlist = async () => {
 
       createdAt: serverTimestamp()
     });
-
     console.log("Document ID:", docRef.id);
-
     alert("Inquiry Sent Successfully!");
-
     setShowForm(false);
-
     setFormData({
       name: "",
       email: "",
@@ -848,42 +802,7 @@ const handleWishlist = async () => {
     alert(error.message);
   }
 };
-  // Function to render star ratings using iconsax
-  const renderStars = (rating) => {
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 >= 0.5;
-    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-    
-    let stars = [];
-    
-    // Full stars
-    for (let i = 0; i < fullStars; i++) {
-      stars.push(
-        <Star1
-          key={`full-${i}`}
-          size={16}
-          variant="Bold"
-          color="#f39c12"
-        />
-      );
-    }
-    
-    // Empty stars
-    for (let i = 0; i < emptyStars; i++) {
-      stars.push(
-        <Star1
-          key={`empty-${i}`}
-          size={16}
-          variant="Outline"
-          color="#f39c12"
-        />
-      );
-    }
-    
-    return stars;
-  };
-
-  // Use property's own details
+  
   const propertyDetails = {
     beds: property.beds,
     baths: property.baths,
@@ -896,7 +815,6 @@ const handleWishlist = async () => {
   return (
     <div className="property-page">
       <div className="container">
-        {/* Breadcrumb */}
         <nav className="breadcrumb">
           <Link to="/">Home</Link>
           <span>›</span>
@@ -905,23 +823,10 @@ const handleWishlist = async () => {
           <span className="current">{property.title}</span>
         </nav>
 
-        {/* Property Header */}
         <div className="property-header-section">
           <div className="header-left">
             <h1>{property.title}</h1>
-            <div className="location-rating">
-              <span className="location">
-                <Location size={18} color="#b89a5e" variant="Bold" />
-                {property.location}
-              </span>
-              <span className="rating">
-                <span className="rating-stars">
-                  {renderStars(property.rating)}
-                </span>
-                <span className="rating-value">{property.rating}</span>
-                <span className="rating-reviews">({property.reviews} reviews)</span>
-              </span>
-            </div>
+            
             <div className="price-section">
               <span className="price">{property.price}</span>
               <span className="price-detail">EMI starts at ₹45,000/month</span>
@@ -935,14 +840,10 @@ onClick={handleWishlist}
               <Heart size={18} variant="Bold" color="#2c3e50" />
               {saved ? "Saved" : "Save"}
             </button>
-            <button className="btn-share">
-              <ArrowRight2 size={18} variant="Bold" color="#2c3e50" />
-              Share
-            </button>
+            
           </div>
         </div>
 
-        {/* Gallery */}
         <div className="gallery-section">
           <div className="gallery-main">
             <img src={galleryImages[activeImage]} alt={property.title} />
@@ -976,11 +877,8 @@ onClick={handleWishlist}
           </div>
         </div>
 
-        {/* Main Content */}
         <div className="details-grid">
-          {/* Left Column */}
           <div className="details-main">
-            {/* Quick Specs */}
             <div className="quick-specs">
               <div className="spec-card">
                 <Home size={24} variant="Bold" color="#b89a5e" />
@@ -1012,13 +910,11 @@ onClick={handleWishlist}
               </div>
             </div>
 
-            {/* Description */}
             <div className="section">
               <h2>About This Property</h2>
               <p>{propertyDetails.description}</p>
             </div>
 
-            {/* Key Features */}
             <div className="section">
               <h2>Key Features</h2>
               <div className="feature-grid">
@@ -1031,7 +927,6 @@ onClick={handleWishlist}
               </div>
             </div>
 
-            {/* Amenities */}
             <div className="section">
               <h2>Amenities & Facilities</h2>
               <div className="amenity-grid">
@@ -1044,7 +939,6 @@ onClick={handleWishlist}
               </div>
             </div>
 
-            {/* Location & Nearby */}
             <div className="section">
               <h2>Location & Nearby</h2>
               <div className="nearby-grid">
@@ -1080,9 +974,7 @@ onClick={handleWishlist}
             </div>
           </div>
 
-          {/* Right Column - Sidebar */}
           <div className="details-sidebar">
-            {/* Inquiry Box */}
             <div className="inquiry-box">
               <div className="inquiry-header">
                 <h3>Interested in this property?</h3>
@@ -1164,69 +1056,32 @@ onClick={handleWishlist}
                 </form>
               )}
             </div>
-
-            {/* Contact Agent */}
             <div className="agent-box">
-              <h4>Contact Agent</h4>
-              <div className="agent-info">
-                <div className="agent-avatar">
-                  <People size={24} variant="Bold" color="#ffffff" />
-                </div>
-                <div>
-                  <span className="agent-name">Gopi Maries R</span>
-                  <span className="agent-title">Senior Sales Executive</span>
-                  <span className="agent-phone">
-                    <Call size={16} variant="Bold" color="#b89a5e" />
-                    +91 0987654321
-                  </span>
-                </div>
-              </div>
-             
-            </div>
-
-<h4>
-
+              <h4>
 Contact Agent
-
 </h4>
 
 <div className="agent-info">
-
 <img
-
 className="agent-avatar"
-
 src={assignedAgent.image}
-
 alt={assignedAgent.name}
-
 />
-
 <div>
-
 <span className="agent-name">
-
 {assignedAgent.name}
-
 </span>
 
 <span className="agent-title">
-
 {assignedAgent.designation}
-
 </span>
 
 <span className="agent-phone">
-
 {assignedAgent.phone}
-
 </span>
 
 </div>
-
 </div>
-
-
 
 <button
   className="btn-chat"
@@ -1237,12 +1092,11 @@ alt={assignedAgent.name}
     color="#ffffff"
     variant="Bold"
   />
-
   Chat With Agent
 </button>
+            </div>
 
 </div>
-            {/* Similar Properties */}
             <div className="similar-box">
               <h4>Similar Properties</h4>
               <div className="similar-list">
@@ -1266,9 +1120,7 @@ alt={assignedAgent.name}
             </div>
           </div>
         </div>
-      </div>
-    
+      </div>    
   );
 };
-
 export default PropertyDetails;

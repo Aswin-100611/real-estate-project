@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './PropertyListing.css';
 
-// Complete properties array with 20 properties
 const properties = [
   {
     id: 1,
@@ -254,18 +253,13 @@ const PropertyListing = () => {
   const [propertyType, setPropertyType] = useState('All');
   const [viewMode, setViewMode] = useState('grid');
 
-  // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
   }, []);
-
-  // Get unique locations for filter
   const locations = ['All', ...new Set(properties.map(p => p.location))];
-
-  // Filter properties based on search and filters
   const filteredProperties = properties.filter(property => {
     const matchesSearch = property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           property.location.toLowerCase().includes(searchTerm.toLowerCase());
@@ -303,17 +297,13 @@ const PropertyListing = () => {
     setSelectedLocation('All');
     setPriceRange('All');
     setPropertyType('All');
-  };
-
-  // Function to render star ratings
+  }
   const renderStars = (rating) => {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 >= 0.5;
     const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
     
     let stars = [];
-    
-    // Full stars
     for (let i = 0; i < fullStars; i++) {
       stars.push(
         <svg key={`full-${i}`} className="star-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -321,8 +311,6 @@ const PropertyListing = () => {
         </svg>
       );
     }
-    
-    // Half star
     if (hasHalfStar) {
       stars.push(
         <svg key="half" className="star-icon half" viewBox="0 0 24 24" fill="currentColor">
@@ -335,8 +323,6 @@ const PropertyListing = () => {
         </svg>
       );
     }
-    
-    // Empty stars
     for (let i = 0; i < emptyStars; i++) {
       stars.push(
         <svg key={`empty-${i}`} className="star-icon empty" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -379,13 +365,11 @@ const PropertyListing = () => {
 
 </div>
       <div className="container listing-content">
-        {/* Page Header */}
         <div className="listing-header">
           <h1>Explore Properties</h1>
           <p>Find your dream home from our curated collection</p>
         </div>
 
-        {/* Search and Filter Bar */}
         <div className="filter-section">
           <div className="search-bar">
             <svg className="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -440,7 +424,6 @@ const PropertyListing = () => {
             </button>
           </div>
 
-          {/* Listing Controls */}
           <div className="listing-controls">
             <span className="results-count">
               {filteredProperties.length} properties found
@@ -474,7 +457,6 @@ const PropertyListing = () => {
           </div>
         </div>
 
-        {/* Property Cards */}
         {filteredProperties.length === 0 ? (
           <div className="no-results">
             <h3>No properties found</h3>

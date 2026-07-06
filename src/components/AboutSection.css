@@ -1,9 +1,3 @@
-/* =============================================
-   ABOUT SECTION — uses same tokens & fonts
-   as HeroSection.css
-   ============================================= */
-
-/* ABOUT HERO BANNER */
 .about-hero {
   min-height: 55vh;
   display: flex;
@@ -49,7 +43,6 @@
   opacity: 0.9;
 }
 
-/* STORY / MISSION */
 .about-story {
   padding: 100px 60px;
   background: var(--cream);
@@ -96,7 +89,6 @@
   font-size: 1rem;
 }
 
-/* STATS BAR */
 .about-stats {
   background: var(--charcoal);
   display: grid;
@@ -122,14 +114,12 @@
   font-size: 0.9rem;
 }
 
-/* VALUES V2 — Two-Column Approach Layout */
 .about-values-v2 {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   min-height: 620px;
 }
 
-/* Left column — dark panel */
 .values-left {
   background: var(--charcoal);
   padding: 80px 60px;
@@ -173,7 +163,6 @@
   margin-bottom: 50px;
 }
 
-/* 2×2 numbered values grid */
 .values-numbered-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -204,7 +193,6 @@
   margin-top: 4px;
 }
 
-/* Right column — Mission & Vision cards */
 .values-right {
   display: flex;
   flex-direction: column;
@@ -265,7 +253,6 @@
   color: var(--charcoal);
 }
 
-/* TEAM */
 .about-team {
   padding: 100px 60px;
   background: #fff;
@@ -334,7 +321,6 @@
 }
 
 
-/* ABOUT CTA */
 .about-cta {
   background: var(--charcoal);
   color: #fff;
@@ -449,7 +435,6 @@
   justify-content: flex-start;
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
   .about-hero-content h1 {
     font-size: 3rem;
