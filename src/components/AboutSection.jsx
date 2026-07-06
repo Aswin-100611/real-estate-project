@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./AboutSection.css";
 
@@ -35,6 +35,8 @@ const team = [
 ];
 
 export default function AboutSection() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <div className="page about-page">
       <nav className="navbar">
@@ -51,7 +53,27 @@ export default function AboutSection() {
           <li><Link to="/contact">Contact</Link></li>
         </ul>
 
+        <button
+          className="menu-btn"
+          onClick={() => setMobileMenuOpen(true)}
+        >
+          ☰
+        </button>
       </nav>
+
+      <div className={`mobile-menu ${mobileMenuOpen ? "show" : ""}`}>
+        <button
+          className="close-menu"
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          ✕
+        </button>
+        <Link to="/" onClick={() => setMobileMenuOpen(false)}>Home</Link>
+        <Link to="/property" onClick={() => setMobileMenuOpen(false)}>Browse</Link>
+        <Link to="/about" onClick={() => setMobileMenuOpen(false)}>About</Link>
+        <Link to="/agents" onClick={() => setMobileMenuOpen(false)}>Agents</Link>
+        <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+      </div>
 
       <section className="about-hero">
 
