@@ -525,3 +525,73 @@
     gap: 45px;
   }
 }
+
+/* Mobile Menu Button & Mobile Menu */
+.about-page .menu-btn {
+  display: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, .15);
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: .3s;
+  backdrop-filter: blur(10px);
+  align-items: center;
+  justify-content: center;
+}
+
+.about-page .menu-btn:hover {
+  background: #b89a5e;
+}
+
+.about-page .mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -280px;
+  width: 260px;
+  height: 100vh;
+  background: #1e1c1a;
+  display: flex;
+  flex-direction: column;
+  padding: 90px 30px;
+  gap: 28px;
+  transition: .35s;
+  z-index: 9999;
+}
+
+.about-page .mobile-menu.show {
+  right: 0;
+}
+
+.about-page .mobile-menu a {
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+  transition: .3s;
+}
+
+.about-page .mobile-menu a:hover {
+  color: #b89a5e;
+}
+
+.about-page .close-menu {
+  position: absolute;
+  top: 25px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .about-page .menu-btn {
+    display: flex;
+  }
+}
