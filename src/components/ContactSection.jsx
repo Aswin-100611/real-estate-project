@@ -8,6 +8,7 @@ const EMAILJS_TEMPLATE_ID = "template_6t46y8y";
 const EMAILJS_PUBLIC_KEY = "c2enONqTGBu9otFww";
 
 export default function ContactSection() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const formRef = useRef();
   const [formData, setFormData] = useState({
     name: "",
@@ -58,7 +59,28 @@ export default function ContactSection() {
           <li><Link to="/agents">Agents</Link></li>
           <li><Link to="/contact">Contact</Link></li>
         </ul>
+
+        <button
+          className="menu-btn"
+          onClick={() => setMobileMenuOpen(true)}
+        >
+          ☰
+        </button>
       </nav>
+
+      <div className={`mobile-menu ${mobileMenuOpen ? "show" : ""}`}>
+        <button
+          className="close-menu"
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          ✕
+        </button>
+        <Link to="/" onClick={() => setMobileMenuOpen(false)}>Home</Link>
+        <Link to="/property" onClick={() => setMobileMenuOpen(false)}>Browse</Link>
+        <Link to="/about" onClick={() => setMobileMenuOpen(false)}>About</Link>
+        <Link to="/agents" onClick={() => setMobileMenuOpen(false)}>Agents</Link>
+        <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+      </div>
 
       <section className="contact-fullpage">
         <div className="contact-fullpage-overlay"></div>
