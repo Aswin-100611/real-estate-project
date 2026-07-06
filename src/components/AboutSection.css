@@ -514,3 +514,14 @@
     padding: 70px 20px;
   }
 }
+
+@media (min-width: 769px) {
+  .about-page .nav-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    list-style: none;
+    gap: 45px;
+  }
+}
