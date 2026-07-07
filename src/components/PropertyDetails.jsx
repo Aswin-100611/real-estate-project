@@ -559,9 +559,9 @@ const propertyGalleries = {
   ],
   3: [
     "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800",
-    "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800",
+    "https://images.unsplash.com/photo-1715985160020-d8cd6fdc8ba9?w=800",
     "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=800",
-    "https://images.unsplash.com/photo-1560448204-5f59f8fc3ac4?w=800"
+    "https://images.unsplash.com/photo-1737898378296-94dc316cd443?w=800"
   ],
   4: [
     "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800",
@@ -572,8 +572,8 @@ const propertyGalleries = {
   5: [
     "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800",
     "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800",
-    "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800",
-    "https://images.unsplash.com/photo-1560448204-5f59f8fc3ac4?w=800"
+    "https://images.unsplash.com/photo-1729690137675-23a6c6556f02?w=800",
+    "https://media.istockphoto.com/id/1254759513/photo/time-away-from-the-world-or-not-quite.webp?a=1&b=1&s=612x612&w=0&k=20&c=WzeAVL3pbt8EoA_SMG0kW2rRRFHa7MGtqCvtJM47AH8="
   ],
   6: [
     "https://images.unsplash.com/photo-1494526585095-c41746248156?w=800",
@@ -585,13 +585,13 @@ const propertyGalleries = {
     "https://images.unsplash.com/photo-1460317442991-0ec209397118?w=800",
     "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=800",
     "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800",
-    "https://images.unsplash.com/photo-1560448204-5f59f8fc3ac4?w=800"
+    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800"
   ],
   8: [
     "https://images.unsplash.com/photo-1448630360428-65456885c650?w=800",
     "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800",
-    "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800",
-    "https://images.unsplash.com/photo-1560448204-5f59f8fc3ac4?w=800"
+    "https://images.unsplash.com/photo-1649068559107-e5d936141e44?w=800",
+    "https://plus.unsplash.com/premium_photo-1678898322992-b4e205d244a0?w=800"
   ],
   9: [
     "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800",
@@ -603,7 +603,7 @@ const propertyGalleries = {
     "https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?w=800",
     "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=800",
     "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800",
-    "https://images.unsplash.com/photo-1560448204-5f59f8fc3ac4?w=800"
+    "https://plus.unsplash.com/premium_photo-1736194029253-e6e8cbd42087?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8aG9tZXMlMjBraXRjaGVufGVufDB8fDB8fHww"
   ],
   11: [
     "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800",
@@ -627,7 +627,7 @@ const propertyGalleries = {
     "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800",
     "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800",
     "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=800",
-    "https://images.unsplash.com/photo-1560448204-5f59f8fc3ac4?w=800"
+    "https://images.unsplash.com/photo-1649083048597-d7b4f1e8a386?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGhvbWVzJTIwa2l0Y2hlbnxlbnwwfHwwfHx8MA%3D%3D"
   ],
   15: [
     "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800",
@@ -638,7 +638,7 @@ const propertyGalleries = {
   16: [
     "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800",
     "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800",
-    "https://images.unsplash.com/photo-1560448204-5f59f8fc3ac4?w=800",
+    "https://images.unsplash.com/photo-1668910231038-e342ad670789?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGhvbWVzJTIwa2l0Y2hlbnxlbnwwfHwwfHx8MA%3D%3D",
     "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800"
   ],
   17: [
@@ -651,7 +651,7 @@ const propertyGalleries = {
     "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800",
     "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800",
     "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=800",
-    "https://images.unsplash.com/photo-1560448204-5f59f8fc3ac4?w=800"
+    "https://media.istockphoto.com/id/1263682795/photo/front-door-of-home-with-beautiful-floor-plan-design.webp?a=1&b=1&s=612x612&w=0&k=20&c=RwIRMqhvAsJxmKCD5cjklV75MFIOvVo-KfefYicpwS8="
   ],
   19: [
     "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800",
